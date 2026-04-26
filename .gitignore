@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# SIDRA project files (generated, large)
+sites/*.sipx
+
+# Output (generated)
+output/*.xlsx
+output/*.csv
+
+# AADT data (user-provided, not committed)
+data/aadt/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

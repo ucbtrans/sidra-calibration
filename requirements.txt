@@ -1,0 +1,15 @@
+# Core
+pythonnet>=3.0.3
+clr-loader>=0.2.6
+
+# Geometry
+osmnx>=1.9.0
+
+# Optimization (optional – only needed for GA calibration)
+deap>=1.4.1
+
+# Reports
+openpyxl>=3.1.2
+
+# Data handling
+# (csv, pathlib, math are stdlib – no extra packages needed)
