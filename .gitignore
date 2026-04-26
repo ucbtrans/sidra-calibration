@@ -24,3 +24,8 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Claude Code editor temp files
+src/*.tmp.*
+
+tests/*.tmp.*
