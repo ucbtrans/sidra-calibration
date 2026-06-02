@@ -1,0 +1,65 @@
+# calibrate_site.py - example configuration
+# Run from sidra-calibration/:
+#   python calibrate_site.py configs/example_site.yaml
+#
+# Replace all values below with real site data.
+# Comment out any target you do not have field data for.
+
+# -----------------------------------------------------------------------
+# Site identification
+# -----------------------------------------------------------------------
+site_id: D03-SAC-50-EXAMPLE
+description: "Example config - District 3, Sacramento County"
+
+# -----------------------------------------------------------------------
+# Model selection
+# Options: sidra_standard_us | hcm2010 | hcm6
+# -----------------------------------------------------------------------
+model: sidra_standard_us
+
+# -----------------------------------------------------------------------
+# Geometry - from OSM or design plans
+# -----------------------------------------------------------------------
+geometry:
+  icd_m: 22.0          # inscribed circle diameter (metres)
+  circ_lanes: 1        # number of circulating lanes
+
+# -----------------------------------------------------------------------
+# Volumes
+# mode: synthetic  - use lv_per_movement (balanced entry volumes)
+# mode: observed   - per-movement counts (not yet implemented)
+# -----------------------------------------------------------------------
+volumes:
+  mode: synthetic
+  lv_per_movement: 23  # light vehicles per turning movement (veh/h)
+  hv_pct: 0.06         # heavy vehicle fraction (6% default)
+
+# -----------------------------------------------------------------------
+# Observed field targets
+# Leave out any target you do not have field data for.
+# All three require near-saturation conditions at the site.
+# tc_s / tf_s (gap acceptance) are reserved for a future extension.
+# -----------------------------------------------------------------------
+targets:
+  capacity_veh_h: 850    # observed entry capacity (veh/h per lane)
+  q95_veh: 5             # observed 95th pct queue (vehicles)
+  delay_s: 12.0          # observed average control delay (s/veh)
+
+# -----------------------------------------------------------------------
+# Target weights - higher weight = this target matters more in the fit
+# -----------------------------------------------------------------------
+weights:
+  capacity_veh_h: 1.0
+  q95_veh: 0.5
+  delay_s: 0.3
+
+# -----------------------------------------------------------------------
+# Sweep settings
+# p_min/p_max default to the model's valid range if not specified:
+#   fe (SIDRA Standard US): 0.5 - 2.0
+#   cf (HCM 2010 / HCM 6):  0.7 - 1.3
+# -----------------------------------------------------------------------
+sweep:
+  p_min: 0.5
+  p_max: 2.0
+  n_steps: 30

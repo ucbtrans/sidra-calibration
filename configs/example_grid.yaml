@@ -1,0 +1,92 @@
+# calibrate_grid.py - example 2D grid search configuration
+# Run from sidra-calibration/:
+#   python calibrate_grid.py configs/example_grid.yaml
+#
+# Replace all values below with real site data.
+# Keep n_steps <= 15 per parameter (15 x 15 = 225 SIDRA runs max).
+#
+# NOTE ON READY PARAMETERS (as of April 2026):
+#   fe  - ready (SIDRA Standard US only)
+#   cf  - ready (HCM 2010 and HCM 6 only)
+#   All other parameters need API probe before use.
+#   See param_registry.py and probe_modelsetting.py.
+#
+#   fe and cf cannot be used together - they belong to different models.
+#   A 2D grid search becomes most useful once ec_flow_adjustment or
+#   gap_acceptance_factor are confirmed via API probe.
+#
+#   This example shows the intended configuration for
+#   fe x ec_flow_adjustment (SIDRA Standard US).
+#   To run it today, replace parameter_2 with another confirmed parameter.
+
+# -----------------------------------------------------------------------
+# Site identification
+# -----------------------------------------------------------------------
+site_id: D03-SAC-50-EXAMPLE-GRID
+description: "Example 2D grid - fe x EC Flow Adjustment, SIDRA Standard US"
+
+# -----------------------------------------------------------------------
+# Model selection
+# Options: sidra_standard_us | hcm2010 | hcm6
+# -----------------------------------------------------------------------
+model: sidra_standard_us
+
+# -----------------------------------------------------------------------
+# Geometry - from OSM or design plans
+# -----------------------------------------------------------------------
+geometry:
+  icd_m: 22.0          # inscribed circle diameter (metres)
+  circ_lanes: 1        # number of circulating lanes
+
+# -----------------------------------------------------------------------
+# Volumes
+# -----------------------------------------------------------------------
+volumes:
+  mode: synthetic
+  lv_per_movement: 23  # light vehicles per turning movement (veh/h)
+  hv_pct: 0.06         # heavy vehicle fraction
+
+# -----------------------------------------------------------------------
+# Observed field targets
+# Comment out any target you do not have field data for.
+# -----------------------------------------------------------------------
+targets:
+  capacity_veh_h: 850    # observed entry capacity (veh/h per lane)
+  q95_veh: 5             # observed 95th pct queue (vehicles)
+  delay_s: 12.0          # observed average control delay (s/veh)
+
+# -----------------------------------------------------------------------
+# Target weights
+# -----------------------------------------------------------------------
+weights:
+  capacity_veh_h: 1.0
+  q95_veh: 0.5
+  delay_s: 0.3
+
+# -----------------------------------------------------------------------
+# 2D Grid search parameters
+#
+# Both parameters must apply to the selected model (see applies_to in
+# param_registry.py). Both must have ready: True.
+#
+# Continuous parameter keys: p_min, p_max, n_steps
+#   Omit any key to use the registry default range.
+# Categorical parameter keys: values (list)
+#   Omit to sweep all defined category values.
+# -----------------------------------------------------------------------
+grid_search:
+  parameter_1:
+    name: fe             # Environment Factor - continuous, range 0.5 to 2.0
+    p_min: 0.6
+    p_max: 1.8
+    n_steps: 13          # 13 values from 0.6 to 1.8
+
+  parameter_2:
+    name: ec_flow_adjustment   # Entry-Circulating Flow Adjustment - categorical
+    # values: [0, 1, 2, 3]    # None / Low / Medium / High
+    # Omit 'values' to sweep all four levels automatically.
+    #
+    # REQUIRES API PROBE: ec_flow_adjustment is not yet active.
+    # Run probe_modelsetting.py, implement _set_ec_flow_adjustment()
+    # in param_registry.py, then set ready: True.
+    # Total runs when ready: 13 x 4 = 52

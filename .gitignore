@@ -7,11 +7,14 @@ venv/
 *.egg-info/
 
 # SIDRA project files (generated, large)
-sites/*.sipx
+sites/
+*.sipx
+_work_*.sipx
 
-# Output (generated)
-output/*.xlsx
-output/*.csv
+# Generated / cached data
+cache/
+osm/
+output/
 
 # AADT data (user-provided, not committed)
 data/aadt/
@@ -25,7 +28,5 @@ Thumbs.db
 .idea/
 *.swp
 
-# Claude Code editor temp files
-src/*.tmp.*
-
-tests/*.tmp.*
+# Claude Code editor temp files (anywhere in tree)
+*.tmp.*
