@@ -91,6 +91,33 @@ python run_calibration.py --sites 3  # first 3 sites only
 python run_calibration.py --param fe # or --param cf
 ```
 
+### Phase 3 - genetic algorithm (three or more parameters)
+
+Beyond two parameters a full grid is exponential, so a genetic algorithm
+searches the space within a fixed evaluation budget. The parameters to
+calibrate are listed in the YAML config.
+
+```bash
+python calibrate_ga.py configs/example_ga.yaml
+```
+
+Output (`output/calibration/{site_id}/ga_{params}/`):
+- `ga_results.json` - best parameters, residuals, convergence history
+- `convergence.png` - best/mean error vs generation, per-target residuals
+
+The GA engine (`src/genetic_search.py`) is self-contained: it uses only the
+Python standard library, so no third-party optimization package is required.
+Every fitness evaluation is one SIDRA run, so the engine caches results by
+parameter values and runs each distinct combination at most once.
+
+### Choosing a tool
+
+| Parameters | Tool | Method |
+|-----------|------|--------|
+| 1 | `calibrate_site.py` | Exhaustive sweep |
+| 2 | `calibrate_grid.py` | Exhaustive 2D grid |
+| 3 or more | `calibrate_ga.py` | Genetic algorithm |
+
 ## Project Structure
 
 ```
@@ -99,9 +126,11 @@ sidra-calibration/
 ├── calibrate_grid.py       # Phase 2 - two-parameter grid search
 ├── run_calibration.py      # Legacy batch sensitivity sweep
 ├── requirements.txt
+├── calibrate_ga.py        # Phase 3 - genetic algorithm (3+ parameters)
 ├── configs/
 │   ├── example_site.yaml   # Phase 1 config template
-│   └── example_grid.yaml   # Phase 2 config template
+│   ├── example_grid.yaml   # Phase 2 config template
+│   └── example_ga.yaml     # Phase 3 config template
 ├── data/
 │   ├── sites.csv           # Caltrans SHS roundabout inventory
 │   └── aadt/               # Place ca_route_aadt.csv here (see below)
@@ -112,6 +141,7 @@ sidra-calibration/
 │   ├── calibration.py      # Legacy sensitivity sweep + bisection
 │   ├── multi_target.py     # Weighted normalized error, parameter sweep
 │   ├── grid_search.py      # 2D grid search over two parameters
+│   ├── genetic_search.py   # Genetic algorithm over N parameters
 │   ├── param_registry.py   # Registry of the seven calibration parameters
 │   ├── sites.py            # Site list loader
 │   └── report.py           # Excel report writer
@@ -146,8 +176,8 @@ E = sum_i w_i * ((y_modeled_i - y_target_i) / y_target_i)^2 / sum_i w_i
 ```
 
 over the specified targets (capacity, queue, delay). Phase 1 minimizes E over a
-single parameter; Phase 2 minimizes E over a two-parameter grid. A genetic
-algorithm (Phase 3, planned) will extend this to three or more parameters.
+single parameter; Phase 2 minimizes E over a two-parameter grid; Phase 3 uses a
+genetic algorithm to minimize E over three or more parameters at once.
 
 Default parameter ranges:
 

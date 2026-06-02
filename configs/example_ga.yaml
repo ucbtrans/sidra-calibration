@@ -1,0 +1,92 @@
+# calibrate_ga.py - example genetic-algorithm configuration
+# Run from sidra-calibration/:
+#   python calibrate_ga.py configs/example_ga.yaml
+#
+# Use the GA for three or more parameters. For one parameter use
+# calibrate_site.py; for two, calibrate_grid.py.
+#
+# READY PARAMETERS (as of June 2026): fe, cf.
+# All other parameters need an API probe before they can be calibrated
+# (see param_registry.py and probe_modelsetting.py). The parameter list
+# below is the intended multi-parameter set; replace pending parameters
+# with ready ones to run today.
+
+# -----------------------------------------------------------------------
+# Site identification
+# -----------------------------------------------------------------------
+site_id: D03-SAC-50-EXAMPLE-GA
+description: "Example GA calibration - SIDRA Standard US, multi-parameter"
+
+# -----------------------------------------------------------------------
+# Model selection
+# Options: sidra_standard_us | hcm2010 | hcm6
+# -----------------------------------------------------------------------
+model: sidra_standard_us
+
+# -----------------------------------------------------------------------
+# Geometry
+# -----------------------------------------------------------------------
+geometry:
+  icd_m: 22.0
+  circ_lanes: 1
+
+# -----------------------------------------------------------------------
+# Volumes
+# -----------------------------------------------------------------------
+volumes:
+  mode: synthetic
+  lv_per_movement: 23
+  hv_pct: 0.06
+
+# -----------------------------------------------------------------------
+# Observed field targets (at least one required)
+# -----------------------------------------------------------------------
+targets:
+  capacity_veh_h: 850
+  q95_veh: 5
+  delay_s: 12.0
+
+weights:
+  capacity_veh_h: 1.0
+  q95_veh: 0.5
+  delay_s: 0.3
+
+# -----------------------------------------------------------------------
+# Genetic algorithm
+#
+# parameters: list of two or more parameters to calibrate together.
+#   Continuous parameter: optional p_min / p_max (else registry default).
+#   Categorical parameter: optional values list (else all category values).
+#
+# settings: GA hyperparameters. All optional - defaults shown.
+#   pop_size    individuals per generation        (default 24)
+#   n_gen       maximum generations               (default 30)
+#   cx_pb       crossover probability per pair     (default 0.6)
+#   mut_pb      mutation probability per gene      (default 0.2)
+#   sigma_frac  mutation step, fraction of range   (default 0.15)
+#   tourn_k     tournament size                    (default 3)
+#   elitism     best individuals carried over      (default 2)
+#   patience    stop after N stale generations     (default 8)
+#   seed        RNG seed for reproducibility        (default 12345)
+#
+# Evaluation budget is at most pop_size * n_gen SIDRA runs; the engine
+# caches repeated combinations, so the real count is usually lower.
+# -----------------------------------------------------------------------
+genetic_algorithm:
+  parameters:
+    - name: fe                    # Environment Factor (continuous, ready)
+      p_min: 0.6
+      p_max: 1.8
+
+    - name: ec_flow_adjustment    # categorical (PENDING API probe)
+      # values: [0, 1, 2, 3]      # None / Low / Medium / High
+
+    - name: gap_acceptance_factor # continuous (PENDING API probe + field data)
+      # p_min: 0.8
+      # p_max: 1.2
+
+  settings:
+    pop_size: 24
+    n_gen: 30
+    patience: 8
+    seed: 12345

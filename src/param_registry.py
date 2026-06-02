@@ -197,6 +197,30 @@ def get_param_values(param_name: str, user_cfg: dict) -> list:
     return [round(lo + i * step, 6) for i in range(n)]
 
 
+def get_param_spec(param_name: str, user_cfg: dict) -> dict:
+    """
+    Build a genetic_search parameter spec for a parameter.
+
+    Continuous  -> {"name", "type": "continuous", "lo", "hi"}
+    Categorical -> {"name", "type": "categorical", "values": [...]}
+
+    user_cfg is the per-parameter block from the YAML parameters list.
+    Falls back to registry defaults when user_cfg omits fields.
+    """
+    info = PARAM_REGISTRY[param_name]
+
+    if info["type"] == "categorical":
+        return {
+            "name":   param_name,
+            "type":   "categorical",
+            "values": list(user_cfg.get("values", info["values"])),
+        }
+
+    lo = float(user_cfg.get("p_min", info["default_range"][0]))
+    hi = float(user_cfg.get("p_max", info["default_range"][1]))
+    return {"name": param_name, "type": "continuous", "lo": lo, "hi": hi}
+
+
 def validate_param(param_name: str, model_key: str) -> str:
     """
     Check that param_name exists, is ready, and applies to model_key.
