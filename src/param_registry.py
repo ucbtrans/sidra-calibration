@@ -52,16 +52,22 @@ def _set_ec_flow_adjustment(sid, site, model_code, value):
     """
     Entry-Circulating Flow Adjustment  (0=None, 1=Low, 2=Medium, 3=High).
 
-    API property name not yet confirmed. Run probe_modelsetting.py to find it,
-    then replace the raise below with the correct setter call.
-    Expected location: site.ModelSetting or rleg (roundabout leg setting).
+    API property confirmed via probe_ec_flow.py:
+      rleg.Entry_circ_adj       - integer level 0..3
+      rleg.Entry_circ_adj_user  - True to apply the user-specified level
+                                  (otherwise SIDRA auto-selects it)
+    Applies to all three US capacity models.
     """
-    raise NotImplementedError(
-        "EC Flow Adjustment: SIDRA API property name not yet confirmed.\n"
-        "Run probe_modelsetting.py, look for a property like "
-        "'Rou_EC_adjust', 'EntCirc_adjust', or similar.\n"
-        "Then update _set_ec_flow_adjustment() in param_registry.py."
-    )
+    for leg_idx in range(8):
+        leg = sid._get_leg(site, leg_idx)
+        if leg is None:
+            continue
+        rleg = leg.Leg_roundabout
+        try:
+            rleg.Entry_circ_adj_user = True
+            rleg.Entry_circ_adj      = int(value)
+        except Exception:
+            pass
 
 
 def _set_gap_acceptance_factor(sid, site, model_code, value):
@@ -131,13 +137,16 @@ PARAM_REGISTRY = {
         "ready":         True,
     },
     "ec_flow_adjustment": {
+        # Empirically (probe_ec_flow.py + run_ec_sweep_sidra.py) the
+        # Entry-Circulating Flow Adjustment affects the SIDRA Standard US
+        # capacity model only; the HCM regression models ignore it.
         "label":         "Entry-Circulating Flow Adjustment",
         "type":          "categorical",
-        "applies_to":    ["sidra_standard_us", "hcm2010", "hcm6"],
+        "applies_to":    ["sidra_standard_us"],
         "values":        [0, 1, 2, 3],
         "value_labels":  ["None", "Low", "Medium", "High"],
         "setter":        _set_ec_flow_adjustment,
-        "ready":         False,
+        "ready":         True,
     },
     "gap_acceptance_factor": {
         "label":         "Gap Acceptance Factor",
