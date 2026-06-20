@@ -188,18 +188,7 @@ Capacity, queue, and delay targets require near-saturation field conditions.
 Critical gap and follow-up headway can be measured from video without
 saturation, and apply to the SIDRA Standard US model only.
 
-## Research Context
 
-This tool was developed as part of the Caltrans research project **"SIDRA Calibration for Roundabouts in California"** (7-task SOW, UC Berkeley PATH). Key tasks:
-
-| Task | Description | Status |
-|------|-------------|--------|
-| 2 | Operational Review of SIDRA Model | Complete |
-| 3 | Calibration Methodology | Complete |
-| 4 | Application of SIDRA Model (Working Paper) | Complete |
-| 5 | Development of SIDRA Calibration Tool | This repository |
-| 6 | Draft Final Report | In progress |
-| 7 | Final Report and presentation for Caltrans | Due June 2026 |
 
 ## Citation
 

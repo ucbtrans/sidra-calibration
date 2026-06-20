@@ -19,7 +19,7 @@ The tool is designed for Caltrans engineers and external partners who:
 
 **What the tool does:**
 1. Fetches roundabout geometry from OpenStreetMap
-2. Estimates peak-hour turning movements from Caltrans AADT data
+2. Estimates peak-hour turning movements from AADT data
 3. Builds and runs SIDRA models automatically via the SIDRA v10 Python API
 4. Sweeps the Environment Factor across its full range (0.5–2.0) and records capacity, delay, and LOS
 5. Calibrates fe to observed field capacity (when field data are available)
@@ -314,7 +314,7 @@ The tool automatically falls back to default geometry values if OSM fails.
 
 ### "SIDRA processing failed — Error #271"
 
-Lane disciplines were not assigned correctly. This is an internal API issue. Contact the project team at akurzhan@gmail.com.
+Lane disciplines were not assigned correctly. This is an internal API issue. Contact the project team at akurzhan@berkeley.edu.
 
 ### "Error #304: Flow proportions do not add up to 100%"
 
@@ -375,6 +375,6 @@ Both parameters adjust critical gap (tc) and follow-up headway (tf) — the fund
 
 | Role | Name | Email |
 |---|---|---|
-| Principal Investigator | Alexander Kurzhanskiy | akurzhan@gmail.com |
-| Co-PI | Alexander Skabardonis | — |
+| Principal Investigator | Alexander Skabardonis | -- |
+| Co-PI | Alexander Kurzhanskiy |akurzhan@berkeley.edu |
 | Repository | github.com/ucbtrans/sidra-calibration | — |
