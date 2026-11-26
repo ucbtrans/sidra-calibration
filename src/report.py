@@ -133,18 +133,30 @@ def _write_site_sheet(wb: Workbook, sd: dict):
     ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=4)
     row += 1
 
+    tm = sd.get("turning_movements")
+    routes = sd.get("route1")
+    if sd.get("route2"):
+        routes = f"{routes} / {sd.get('route2')}"
     meta = [
         ("Site ID",       sd.get("site_id")),
         ("District",      sd.get("district")),
         ("County",        sd.get("county")),
-        ("Route(s)",      sd.get("route1")),
+        ("Route(s)",      routes),
         ("Location",      sd.get("site_name")),
         ("Latitude",      sd.get("lat")),
         ("Longitude",     sd.get("lon")),
         ("# Legs",        sd.get("n_legs")),
         ("Lane Config",   sd.get("lane_config")),
-        ("AADT (Route 1)",sd.get("aadt1")),
-        ("AADT Source",   sd.get("aadt_source")),
+        ("Capacity Model", sd.get("model")),
+        ("Saved .sipx at", _param_text(sd, sd.get("saved_value"))),
+        ("Volume Source", getattr(tm, "aadt_source", None)),
+        ("Census Route Used", getattr(tm, "main_route", None)),
+        ("AADT Main Road (veh/day)", getattr(tm, "aadt1", None)),
+        ("AADT Cross Road / Ramps (veh/day)", _aadt2_text(tm)),
+        ("Two-Way Peak Hour Main Road (veh/h)", getattr(tm, "peak_hour1", None)),
+        ("Peak-Hour Basis", getattr(tm, "peak_hour_basis", None)),
+        ("Modeled Total Entry Demand (veh/h)", getattr(tm, "total_entry", None)),
+        ("Volume Notes", getattr(tm, "notes", None)),
     ]
     for label, value in meta:
         ws.cell(row=row, column=1, value=label).font = Font(bold=True, size=10)
@@ -160,20 +172,24 @@ def _write_site_sheet(wb: Workbook, sd: dict):
         ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=7)
         row += 1
 
-        headers = ["Leg", "Orientation", "Entry Lanes", "Exit Lanes",
-                   "Circ. Lanes", "Circ. Width (m)", "Source"]
+        headers = ["Leg", "Approach", "Entry Lanes", "Exit Lanes",
+                   "Circ. Lanes", "Circ. Width (ft)", "Island Diam. (ft)",
+                   "Source", "Entry Demand (veh/h)"]
         for c, h in enumerate(headers, 1):
             _header_style(ws, row, c, h, bg=COL_HEADER_BG)
         row += 1
 
+        approach = getattr(tm, "approach_volumes", {}) or {}
         for leg in geom.legs:
             ws.cell(row=row, column=1, value=leg.leg_name)
-            ws.cell(row=row, column=2, value=leg.leg_idx)
+            ws.cell(row=row, column=2, value=_COMPASS.get(leg.leg_idx, leg.leg_idx))
             ws.cell(row=row, column=3, value=leg.n_entry_lanes)
             ws.cell(row=row, column=4, value=leg.n_exit_lanes)
             ws.cell(row=row, column=5, value=leg.n_circ_lanes)
-            ws.cell(row=row, column=6, value=leg.circulating_width_m)
-            ws.cell(row=row, column=7, value=leg.source)
+            ws.cell(row=row, column=6, value=round(leg.circulating_width_m * FT_PER_M, 1))
+            ws.cell(row=row, column=7, value=round(leg.island_diameter_m * FT_PER_M, 1))
+            ws.cell(row=row, column=8, value=leg.source)
+            ws.cell(row=row, column=9, value=approach.get(leg.leg_idx))
             row += 1
         row += 1
 
@@ -319,34 +335,33 @@ def write_summary_report(output_path: str, sites_data: list[dict]) -> None:
     title.alignment = Alignment(horizontal="left")
     row += 2
 
+    first = sites_data[0] if sites_data else {}
+    p = first.get("param", "fe")
+    d = first.get("param_default", 1.05)
     headers = [
         "Site ID", "District", "County", "Route", "Location",
-        "# Legs", "Lane Config", "AADT", "AADT Source",
-        "Default Cap. (veh/h)", "Cap. @ fe=0.9", "Cap. @ fe=1.1",
-        "Ctrl Delay @ default (s/veh)", "LOS @ default", "Notes",
+        "# Legs", "Lane Config", "Capacity Model", "Volume Source",
+        "AADT Main Road (veh/day)", "AADT Cross / Ramps (veh/day)",
+        "Two-Way Peak Hour Main Road (veh/h)", "Modeled Entry Demand (veh/h)",
+        f"Cap. @ {p}={d:g} (veh/h)", f"Cap. @ {p}={d - 0.1:g}",
+        f"Cap. @ {p}={d + 0.1:g}",
+        "Ctrl Delay @ default (s/veh)", "LOS @ default",
+        f"Calibrated {p}", "Notes",
     ]
     for c, h in enumerate(headers, 1):
         _header_style(ws, row, c, h)
     row += 1
 
     for sd in sites_data:
-        sweep = sd.get("sensitivity")
-        cap_default = cap_lo = cap_hi = delay_default = None
+        kp = sd.get("key_points", {}) or {}
+        cap_default   = kp.get("default", {}).get("capacity")
+        delay_default = kp.get("default", {}).get("delay")
+        cap_lo        = kp.get("minus", {}).get("capacity")
+        cap_hi        = kp.get("plus", {}).get("capacity")
+        tm  = sd.get("turning_movements")
+        cal = sd.get("calibration")
 
         los_default = None
-        if sweep and hasattr(sweep, "sweep"):
-            for pt in sweep.sweep:
-                if "error" in pt:
-                    continue
-                v = pt.get("value", 0)
-                if abs(v - 1.05) < 0.06:   # near default fe
-                    cap_default   = pt.get("capacity_avg")
-                    delay_default = pt.get("avg_delay_avg")
-                if abs(v - 0.90) < 0.06:
-                    cap_lo = pt.get("capacity_avg")
-                if abs(v - 1.10) < 0.06:
-                    cap_hi = pt.get("capacity_avg")
-
         # LOS from baseline lane outputs
         lane_outs = sd.get("lane_outputs", [])
         if lane_outs:
@@ -361,10 +376,13 @@ def write_summary_report(output_path: str, sites_data: list[dict]) -> None:
         vals = [
             sd.get("site_id"), sd.get("district"), sd.get("county"),
             sd.get("route1"), sd.get("site_name"),
-            sd.get("n_legs"), sd.get("lane_config"),
-            sd.get("aadt1"), sd.get("aadt_source"),
+            sd.get("n_legs"), sd.get("lane_config"), sd.get("model"),
+            getattr(tm, "aadt_source", None),
+            getattr(tm, "aadt1", None), _aadt2_text(tm),
+            getattr(tm, "peak_hour1", None), getattr(tm, "total_entry", None),
             _fmt(cap_default), _fmt(cap_lo), _fmt(cap_hi),
             _fmt(delay_default, 1), los_default,
+            (round(cal.value, 3) if cal and cal.value == cal.value else None),
             sd.get("notes", ""),
         ]
         for c, v in enumerate(vals, 1):
@@ -372,7 +390,8 @@ def write_summary_report(output_path: str, sites_data: list[dict]) -> None:
         row += 1
 
     # Column widths
-    widths = [12, 8, 10, 8, 30, 7, 12, 10, 14, 14, 14, 14, 18, 30]
+    widths = [16, 8, 8, 8, 30, 7, 12, 16, 14, 12, 14, 14, 14,
+              12, 12, 12, 14, 10, 12, 40]
     for c, w in enumerate(widths, 1):
         _set_col_width(ws, c, w)
 
@@ -384,6 +403,24 @@ def write_summary_report(output_path: str, sites_data: list[dict]) -> None:
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+FT_PER_M = 3.28084
+_COMPASS = {0: "S", 1: "SE", 2: "E", 3: "NE", 4: "N", 5: "NW", 6: "W", 7: "SW"}
+
+
+def _aadt2_text(tm):
+    if tm is None or getattr(tm, "aadt2", None) is None:
+        return None
+    if getattr(tm, "aadt2_assumed", False):
+        return f"{tm.aadt2} (assumed)"
+    return tm.aadt2
+
+
+def _param_text(sd: dict, value):
+    if value is None:
+        return None
+    return f"{sd.get('param', '')} = {value:g}"
+
+
 def _safe_sheet_name(name: str) -> str:
     """Truncate and sanitize an Excel sheet name."""
     bad = r'\/:*?[]'

@@ -160,3 +160,38 @@ class TestGetRoundaboutGeometry:
             assert leg.circulating_width_m > 0
             assert leg.entry_radius_m > 0
             assert 0 <= leg.entry_angle_deg <= 90
+
+
+class TestOrientationNearestCompass:
+    def test_north_leg_is_labelled_north(self):
+        G = MagicMock()
+        G.nodes = {
+            0: {"x": -122.0, "y": 37.0},
+            1: {"x": -122.0, "y": 37.01},    # north
+            2: {"x": -121.99, "y": 37.0},    # east
+            3: {"x": -122.0, "y": 36.99},    # south
+        }
+        result = _assign_orientations(G, 0, {1, 2, 3})
+        assert result == {1: 4, 2: 2, 3: 0}
+
+
+class TestOsmCache:
+    def test_cache_icd_used(self, tmp_path):
+        import json
+        from geometry import get_roundabout_geometry
+        c = tmp_path / "parsed.json"
+        c.write_text(json.dumps({"S1": {"found": True, "icd_m": 36.0,
+                                         "osm_way_id": 1}}))
+        g = get_roundabout_geometry("S1", 37.0, -122.0, 4, "single_lane",
+                                    source="cache", cache_path=str(c))
+        assert g.inscribed_diameter_m == 36.0
+        assert all(abs(l.island_diameter_m - (36.0 - 2 * l.circulating_width_m)) < 1e-9
+                   for l in g.legs)
+
+    def test_cache_miss_uses_defaults(self, tmp_path):
+        from geometry import get_roundabout_geometry
+        c = tmp_path / "parsed.json"
+        c.write_text("{}")
+        g = get_roundabout_geometry("S2", 37.0, -122.0, 3, "single_lane",
+                                    source="cache", cache_path=str(c))
+        assert len(g.legs) == 3 and "default" in g.notes.lower()

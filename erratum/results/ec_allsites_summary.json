@@ -1,0 +1,1047 @@
+{
+  "n_usable": 39,
+  "n_ok": 39,
+  "lv_per_movement": 500,
+  "model": "SIDRA Standard US",
+  "ec_labels": [
+    "None",
+    "Low",
+    "Medium",
+    "High"
+  ],
+  "method": "REAL SIDRA v10 runs, saturated synthetic volumes",
+  "mean_gain_pct": {
+    "None": 0.0,
+    "Low": 0.235,
+    "Medium": 0.932,
+    "High": 1.615
+  },
+  "median_gain_pct": {
+    "None": 0.0,
+    "Low": 0.24,
+    "Medium": 0.95,
+    "High": 1.63
+  },
+  "max_gain_pct": {
+    "None": 0.0,
+    "Low": 0.37,
+    "Medium": 1.2,
+    "High": 2.0
+  },
+  "sites": [
+    {
+      "site_id": "D01-LAK-29-13",
+      "district": 1,
+      "lane_config": "single_lane",
+      "icd_m": 44.2,
+      "circ_lanes": 2,
+      "caps": [
+        780.0,
+        781.8,
+        787.1,
+        792.2
+      ],
+      "vc": [
+        2.244,
+        2.23,
+        2.191,
+        2.155
+      ],
+      "gain_pct": [
+        0.0,
+        0.23,
+        0.91,
+        1.56
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D01-MEN-175-14",
+      "district": 1,
+      "lane_config": "single_lane",
+      "icd_m": 29.7,
+      "circ_lanes": 1,
+      "caps": [
+        769.4,
+        770.7,
+        775.6,
+        780.5
+      ],
+      "vc": [
+        2.328,
+        2.312,
+        2.268,
+        2.226
+      ],
+      "gain_pct": [
+        0.0,
+        0.17,
+        0.81,
+        1.44
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D01-MEN-1-15",
+      "district": 1,
+      "lane_config": "single_lane",
+      "icd_m": 20.1,
+      "circ_lanes": 1,
+      "caps": [
+        745.5,
+        747.8,
+        753.6,
+        759.1
+      ],
+      "vc": [
+        2.414,
+        2.389,
+        2.334,
+        2.288
+      ],
+      "gain_pct": [
+        0.0,
+        0.31,
+        1.09,
+        1.82
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D02-SHA-5-16",
+      "district": 2,
+      "lane_config": "hybrid",
+      "icd_m": 45.8,
+      "circ_lanes": 2,
+      "caps": [
+        783.7,
+        785.1,
+        790.2,
+        795.3
+      ],
+      "vc": [
+        2.231,
+        2.222,
+        2.185,
+        2.149
+      ],
+      "gain_pct": [
+        0.0,
+        0.18,
+        0.83,
+        1.48
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-BUT-99-17",
+      "district": 3,
+      "lane_config": "hybrid",
+      "icd_m": 37.1,
+      "circ_lanes": 2,
+      "caps": [
+        764.8,
+        767.2,
+        773.0,
+        778.6
+      ],
+      "vc": [
+        2.287,
+        2.267,
+        2.224,
+        2.183
+      ],
+      "gain_pct": [
+        0.0,
+        0.31,
+        1.07,
+        1.8
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-ED-50-18",
+      "district": 3,
+      "lane_config": "hybrid",
+      "icd_m": 22.2,
+      "circ_lanes": 1,
+      "caps": [
+        750.7,
+        752.8,
+        758.4,
+        763.8
+      ],
+      "vc": [
+        2.393,
+        2.371,
+        2.318,
+        2.274
+      ],
+      "gain_pct": [
+        0.0,
+        0.28,
+        1.03,
+        1.75
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-NEV-20-19",
+      "district": 3,
+      "lane_config": "hybrid",
+      "icd_m": 33.0,
+      "circ_lanes": 1,
+      "caps": [
+        777.7,
+        778.7,
+        783.2,
+        788.0
+      ],
+      "vc": [
+        2.302,
+        2.29,
+        2.25,
+        2.211
+      ],
+      "gain_pct": [
+        0.0,
+        0.13,
+        0.71,
+        1.32
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-NEV-80-21",
+      "district": 3,
+      "lane_config": "hybrid",
+      "icd_m": 24.8,
+      "circ_lanes": 1,
+      "caps": [
+        757.3,
+        759.0,
+        764.4,
+        769.6
+      ],
+      "vc": [
+        2.37,
+        2.35,
+        2.3,
+        2.252
+      ],
+      "gain_pct": [
+        0.0,
+        0.22,
+        0.94,
+        1.62
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-NEV-80-22",
+      "district": 3,
+      "lane_config": "hybrid",
+      "icd_m": 23.9,
+      "circ_lanes": 1,
+      "caps": [
+        755.0,
+        756.9,
+        762.3,
+        767.5
+      ],
+      "vc": [
+        2.378,
+        2.357,
+        2.306,
+        2.263
+      ],
+      "gain_pct": [
+        0.0,
+        0.25,
+        0.97,
+        1.66
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-NEV-89-24",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 23.3,
+      "circ_lanes": 1,
+      "caps": [
+        753.5,
+        755.4,
+        760.9,
+        766.2
+      ],
+      "vc": [
+        2.383,
+        2.362,
+        2.31,
+        2.267
+      ],
+      "gain_pct": [
+        0.0,
+        0.25,
+        0.98,
+        1.69
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-PLA-89-28",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 23.4,
+      "circ_lanes": 1,
+      "caps": [
+        753.7,
+        755.7,
+        761.2,
+        766.4
+      ],
+      "vc": [
+        2.382,
+        2.361,
+        2.31,
+        2.266
+      ],
+      "gain_pct": [
+        0.0,
+        0.27,
+        1.0,
+        1.69
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-PLA-89-29",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 36.3,
+      "circ_lanes": 2,
+      "caps": [
+        763.1,
+        765.6,
+        771.4,
+        777.1
+      ],
+      "vc": [
+        2.292,
+        2.272,
+        2.228,
+        2.186
+      ],
+      "gain_pct": [
+        0.0,
+        0.33,
+        1.09,
+        1.83
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-PLA-28-31",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 37.7,
+      "circ_lanes": 2,
+      "caps": [
+        766.0,
+        768.4,
+        774.1,
+        779.7
+      ],
+      "vc": [
+        2.283,
+        2.264,
+        2.221,
+        2.181
+      ],
+      "gain_pct": [
+        0.0,
+        0.31,
+        1.06,
+        1.79
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-PLA-28-32",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 37.5,
+      "circ_lanes": 2,
+      "caps": [
+        765.6,
+        768.0,
+        773.7,
+        779.3
+      ],
+      "vc": [
+        2.284,
+        2.265,
+        2.222,
+        2.181
+      ],
+      "gain_pct": [
+        0.0,
+        0.31,
+        1.06,
+        1.79
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-PLA-80-33",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 34.8,
+      "circ_lanes": 1,
+      "caps": [
+        782.3,
+        783.1,
+        787.7,
+        792.3
+      ],
+      "vc": [
+        2.289,
+        2.278,
+        2.24,
+        2.204
+      ],
+      "gain_pct": [
+        0.0,
+        0.1,
+        0.69,
+        1.28
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D03-SAC-99-34",
+      "district": 3,
+      "lane_config": "single_lane",
+      "icd_m": 24.2,
+      "circ_lanes": 1,
+      "caps": [
+        755.8,
+        757.6,
+        763.0,
+        768.1
+      ],
+      "vc": [
+        2.375,
+        2.355,
+        2.304,
+        2.261
+      ],
+      "gain_pct": [
+        0.0,
+        0.24,
+        0.95,
+        1.63
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D04-NAP-29-42",
+      "district": 4,
+      "lane_config": "hybrid",
+      "icd_m": 25.4,
+      "circ_lanes": 1,
+      "caps": [
+        758.7,
+        760.5,
+        765.7,
+        770.9
+      ],
+      "vc": [
+        2.364,
+        2.345,
+        2.296,
+        2.248
+      ],
+      "gain_pct": [
+        0.0,
+        0.24,
+        0.92,
+        1.61
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D04-SCL-152-43",
+      "district": 4,
+      "lane_config": "single_lane",
+      "icd_m": 32.2,
+      "circ_lanes": 1,
+      "caps": [
+        775.6,
+        776.7,
+        781.3,
+        786.1
+      ],
+      "vc": [
+        2.308,
+        2.295,
+        2.254,
+        2.215
+      ],
+      "gain_pct": [
+        0.0,
+        0.14,
+        0.73,
+        1.35
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D05-MON-1-45",
+      "district": 5,
+      "lane_config": "single_lane",
+      "icd_m": 30.8,
+      "circ_lanes": 1,
+      "caps": [
+        772.1,
+        773.3,
+        778.1,
+        782.9
+      ],
+      "vc": [
+        2.319,
+        2.305,
+        2.262,
+        2.221
+      ],
+      "gain_pct": [
+        0.0,
+        0.16,
+        0.78,
+        1.4
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D05-SB-246-51",
+      "district": 5,
+      "lane_config": "single_lane",
+      "icd_m": 25.8,
+      "circ_lanes": 1,
+      "caps": [
+        759.7,
+        761.4,
+        766.6,
+        771.8
+      ],
+      "vc": [
+        2.361,
+        2.342,
+        2.293,
+        2.246
+      ],
+      "gain_pct": [
+        0.0,
+        0.22,
+        0.91,
+        1.59
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D05-SLO-46-61",
+      "district": 5,
+      "lane_config": "single_lane",
+      "icd_m": 25.1,
+      "circ_lanes": 1,
+      "caps": [
+        758.0,
+        759.7,
+        765.0,
+        770.3
+      ],
+      "vc": [
+        2.367,
+        2.348,
+        2.298,
+        2.25
+      ],
+      "gain_pct": [
+        0.0,
+        0.22,
+        0.92,
+        1.62
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-FRE-145-63",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 37.0,
+      "circ_lanes": 1,
+      "caps": [
+        788.1,
+        788.7,
+        793.2,
+        797.6
+      ],
+      "vc": [
+        2.275,
+        2.266,
+        2.231,
+        2.196
+      ],
+      "gain_pct": [
+        0.0,
+        0.08,
+        0.65,
+        1.21
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-FRE-168-64",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 30.6,
+      "circ_lanes": 1,
+      "caps": [
+        771.6,
+        772.8,
+        777.7,
+        782.4
+      ],
+      "vc": [
+        2.32,
+        2.306,
+        2.263,
+        2.222
+      ],
+      "gain_pct": [
+        0.0,
+        0.16,
+        0.79,
+        1.4
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-KER-43-65",
+      "district": 6,
+      "lane_config": "hybrid",
+      "icd_m": 23.6,
+      "circ_lanes": 1,
+      "caps": [
+        754.3,
+        756.2,
+        761.6,
+        766.8
+      ],
+      "vc": [
+        2.38,
+        2.36,
+        2.308,
+        2.265
+      ],
+      "gain_pct": [
+        0.0,
+        0.25,
+        0.97,
+        1.66
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-KER-155-66",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 37.5,
+      "circ_lanes": 2,
+      "caps": [
+        765.6,
+        768.0,
+        773.7,
+        779.3
+      ],
+      "vc": [
+        2.284,
+        2.265,
+        2.222,
+        2.181
+      ],
+      "gain_pct": [
+        0.0,
+        0.31,
+        1.06,
+        1.79
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-KIN-198-71",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 17.6,
+      "circ_lanes": 1,
+      "caps": [
+        738.9,
+        741.5,
+        747.7,
+        753.7
+      ],
+      "vc": [
+        2.445,
+        2.418,
+        2.36,
+        2.305
+      ],
+      "gain_pct": [
+        0.0,
+        0.35,
+        1.19,
+        2.0
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-KIN-43-72",
+      "district": 6,
+      "lane_config": "hybrid",
+      "icd_m": 44.8,
+      "circ_lanes": 2,
+      "caps": [
+        781.6,
+        783.0,
+        788.2,
+        793.4
+      ],
+      "vc": [
+        2.237,
+        2.227,
+        2.189,
+        2.153
+      ],
+      "gain_pct": [
+        0.0,
+        0.18,
+        0.84,
+        1.51
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-TUL-190-73",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 17.5,
+      "circ_lanes": 1,
+      "caps": [
+        738.6,
+        741.3,
+        747.5,
+        753.4
+      ],
+      "vc": [
+        2.446,
+        2.419,
+        2.361,
+        2.305
+      ],
+      "gain_pct": [
+        0.0,
+        0.37,
+        1.2,
+        2.0
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-TUL-190-74",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 29.1,
+      "circ_lanes": 1,
+      "caps": [
+        767.9,
+        769.3,
+        774.2,
+        779.1
+      ],
+      "vc": [
+        2.332,
+        2.317,
+        2.272,
+        2.229
+      ],
+      "gain_pct": [
+        0.0,
+        0.18,
+        0.82,
+        1.46
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-TUL-198-75",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 41.3,
+      "circ_lanes": 2,
+      "caps": [
+        773.7,
+        775.8,
+        781.3,
+        786.6
+      ],
+      "vc": [
+        2.261,
+        2.244,
+        2.204,
+        2.166
+      ],
+      "gain_pct": [
+        0.0,
+        0.27,
+        0.98,
+        1.67
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D06-TUL-216-76",
+      "district": 6,
+      "lane_config": "single_lane",
+      "icd_m": 19.0,
+      "circ_lanes": 1,
+      "caps": [
+        742.4,
+        745.1,
+        750.9,
+        756.7
+      ],
+      "vc": [
+        2.431,
+        2.399,
+        2.349,
+        2.295
+      ],
+      "gain_pct": [
+        0.0,
+        0.36,
+        1.14,
+        1.93
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D07-LA-138-77",
+      "district": 7,
+      "lane_config": "hybrid",
+      "icd_m": 40.3,
+      "circ_lanes": 2,
+      "caps": [
+        771.6,
+        773.7,
+        779.3,
+        784.7
+      ],
+      "vc": [
+        2.267,
+        2.25,
+        2.209,
+        2.17
+      ],
+      "gain_pct": [
+        0.0,
+        0.27,
+        1.0,
+        1.7
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D07-LA-5-78",
+      "district": 7,
+      "lane_config": "hybrid",
+      "icd_m": 30.1,
+      "circ_lanes": 1,
+      "caps": [
+        770.4,
+        771.6,
+        776.5,
+        781.3
+      ],
+      "vc": [
+        2.324,
+        2.31,
+        2.266,
+        2.224
+      ],
+      "gain_pct": [
+        0.0,
+        0.16,
+        0.79,
+        1.41
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D07-LA-5-79",
+      "district": 7,
+      "lane_config": "hybrid",
+      "icd_m": 52.5,
+      "circ_lanes": 2,
+      "caps": [
+        797.3,
+        798.6,
+        803.4,
+        808.4
+      ],
+      "vc": [
+        2.2,
+        2.189,
+        2.149,
+        2.119
+      ],
+      "gain_pct": [
+        0.0,
+        0.16,
+        0.77,
+        1.39
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D08-RIV-10-80",
+      "district": 8,
+      "lane_config": "hybrid",
+      "icd_m": 40.3,
+      "circ_lanes": 2,
+      "caps": [
+        771.6,
+        773.7,
+        779.3,
+        784.7
+      ],
+      "vc": [
+        2.267,
+        2.25,
+        2.209,
+        2.17
+      ],
+      "gain_pct": [
+        0.0,
+        0.27,
+        1.0,
+        1.7
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D08-SBD-215-82",
+      "district": 8,
+      "lane_config": "hybrid",
+      "icd_m": 44.2,
+      "circ_lanes": 2,
+      "caps": [
+        780.0,
+        781.8,
+        787.1,
+        792.2
+      ],
+      "vc": [
+        2.244,
+        2.23,
+        2.191,
+        2.155
+      ],
+      "gain_pct": [
+        0.0,
+        0.23,
+        0.91,
+        1.56
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D10-SJ-88-85",
+      "district": 10,
+      "lane_config": "single_lane",
+      "icd_m": 21.2,
+      "circ_lanes": 1,
+      "caps": [
+        748.2,
+        750.4,
+        756.1,
+        761.6
+      ],
+      "vc": [
+        2.403,
+        2.38,
+        2.326,
+        2.28
+      ],
+      "gain_pct": [
+        0.0,
+        0.29,
+        1.06,
+        1.79
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D11-SD-76-86",
+      "district": 11,
+      "lane_config": "single_lane",
+      "icd_m": 54.7,
+      "circ_lanes": 2,
+      "caps": [
+        801.7,
+        802.8,
+        807.6,
+        813.1
+      ],
+      "vc": [
+        2.19,
+        2.18,
+        2.146,
+        2.102
+      ],
+      "gain_pct": [
+        0.0,
+        0.14,
+        0.74,
+        1.42
+      ],
+      "ok": true
+    },
+    {
+      "site_id": "D12-ORA-5-87",
+      "district": 12,
+      "lane_config": "single_lane",
+      "icd_m": 41.3,
+      "circ_lanes": 2,
+      "caps": [
+        773.7,
+        775.8,
+        781.3,
+        786.6
+      ],
+      "vc": [
+        2.261,
+        2.244,
+        2.204,
+        2.166
+      ],
+      "gain_pct": [
+        0.0,
+        0.27,
+        0.98,
+        1.67
+      ],
+      "ok": true
+    }
+  ]
+}

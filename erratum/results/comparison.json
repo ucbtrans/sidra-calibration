@@ -1,0 +1,485 @@
+{
+  "excluded_small_icd": {
+    "D01-LAK-20-10": 15.9,
+    "D01-LAK-20-11": 15.0,
+    "D01-LAK-20-12": 12.3,
+    "D03-NEV-89-23": 11.9,
+    "D03-SAC-99-35": 7.8,
+    "D03-YOL-128-37": 13.4,
+    "D03-YOL-16-36": 13.5,
+    "D05-SCR-129-59": 14.3,
+    "D06-KER-184-68": 2.1,
+    "D06-KER-58-69": 14.0,
+    "D08-RIV-10-81": 6.7,
+    "D10-AMA-49-83": 5.5
+  },
+  "table1": {
+    "n_common_corrected": 39,
+    "sidra_standard_us": {
+      "original": {
+        "n": 44,
+        "mean_at_1": 1200,
+        "p10_at_1": 1047,
+        "p90_at_1": 1369,
+        "sens_per_0.1_pct": -7.9,
+        "vs_hcm6_pct": -0.6
+      },
+      "corrected": {
+        "n": 39,
+        "mean_at_1": 1233,
+        "p10_at_1": 1097,
+        "p90_at_1": 1417,
+        "sens_per_0.1_pct": -8.2,
+        "vs_hcm6_pct": 4.8
+      },
+      "original_paired": {
+        "n": 37,
+        "mean_at_1": 1188,
+        "p10_at_1": 1042,
+        "p90_at_1": 1372,
+        "sens_per_0.1_pct": -7.9
+      },
+      "corrected_paired": {
+        "n": 37,
+        "mean_at_1": 1239,
+        "p10_at_1": 1094,
+        "p90_at_1": 1419,
+        "sens_per_0.1_pct": -8.1
+      },
+      "site_change_pct_at_1": [
+        -1.2,
+        4.4,
+        12.3
+      ],
+      "not_in_corrected": [
+        "D01-LAK-20-10",
+        "D01-LAK-20-11",
+        "D01-LAK-20-12",
+        "D03-NEV-89-23",
+        "D03-YOL-16-36",
+        "D05-SCR-129-59",
+        "D06-KER-58-69"
+      ]
+    },
+    "hcm2010": {
+      "original": {
+        "n": 44,
+        "mean_at_1": 1041,
+        "p10_at_1": 914,
+        "p90_at_1": 1170,
+        "sens_per_0.1_pct": -7.2,
+        "vs_hcm6_pct": -13.8
+      },
+      "corrected": {
+        "n": 39,
+        "mean_at_1": 1026,
+        "p10_at_1": 873,
+        "p90_at_1": 1170,
+        "sens_per_0.1_pct": -7.2,
+        "vs_hcm6_pct": -12.8
+      },
+      "original_paired": {
+        "n": 36,
+        "mean_at_1": 1029,
+        "p10_at_1": 894,
+        "p90_at_1": 1170,
+        "sens_per_0.1_pct": -7.2
+      },
+      "corrected_paired": {
+        "n": 36,
+        "mean_at_1": 1029,
+        "p10_at_1": 894,
+        "p90_at_1": 1170,
+        "sens_per_0.1_pct": -7.2
+      },
+      "site_change_pct_at_1": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "not_in_corrected": [
+        "D01-LAK-20-10",
+        "D01-LAK-20-11",
+        "D01-LAK-20-12",
+        "D03-NEV-89-23",
+        "D03-YOL-128-37",
+        "D03-YOL-16-36",
+        "D05-SCR-129-59",
+        "D06-KER-58-69"
+      ]
+    },
+    "hcm6": {
+      "original": {
+        "n": 41,
+        "mean_at_1": 1207,
+        "p10_at_1": 1000,
+        "p90_at_1": 1360,
+        "sens_per_0.1_pct": -7.4,
+        "vs_hcm6_pct": 0.0
+      },
+      "corrected": {
+        "n": 39,
+        "mean_at_1": 1177,
+        "p10_at_1": 1000,
+        "p90_at_1": 1360,
+        "sens_per_0.1_pct": -7.5,
+        "vs_hcm6_pct": 0.0
+      },
+      "original_paired": {
+        "n": 33,
+        "mean_at_1": 1191,
+        "p10_at_1": 1000,
+        "p90_at_1": 1360,
+        "sens_per_0.1_pct": -7.5
+      },
+      "corrected_paired": {
+        "n": 33,
+        "mean_at_1": 1191,
+        "p10_at_1": 1000,
+        "p90_at_1": 1360,
+        "sens_per_0.1_pct": -7.5
+      },
+      "site_change_pct_at_1": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "not_in_corrected": [
+        "D01-LAK-20-10",
+        "D01-LAK-20-11",
+        "D01-LAK-20-12",
+        "D03-NEV-89-23",
+        "D03-YOL-128-37",
+        "D03-YOL-16-36",
+        "D05-SCR-129-59",
+        "D06-KER-58-69"
+      ]
+    }
+  },
+  "ec_allsites": {
+    "n_original": 47,
+    "n_corrected": 39,
+    "n_paired": 39,
+    "original": {
+      "None": 0.0,
+      "Low": 0.34,
+      "Medium": 1.15,
+      "High": 1.92
+    },
+    "corrected": {
+      "None": 0.0,
+      "Low": 0.24,
+      "Medium": 0.93,
+      "High": 1.62
+    },
+    "original_paired": {
+      "None": 0.0,
+      "Low": 0.34,
+      "Medium": 1.14,
+      "High": 1.91
+    },
+    "corrected_paired": {
+      "None": 0.0,
+      "Low": 0.24,
+      "Medium": 0.93,
+      "High": 1.62
+    },
+    "last_level_range_original": [
+      1.61,
+      2.23
+    ],
+    "last_level_range_corrected": [
+      1.21,
+      2.0
+    ],
+    "baseline_cap_mean_original_paired": 747.6,
+    "baseline_cap_mean_corrected_paired": 766.3,
+    "rejected_in_corrected": [
+      "D01-LAK-20-10",
+      "D01-LAK-20-11",
+      "D01-LAK-20-12",
+      "D03-NEV-89-23",
+      "D03-YOL-128-37",
+      "D03-YOL-16-36",
+      "D05-SCR-129-59",
+      "D06-KER-58-69"
+    ]
+  },
+  "hv_allsites": {
+    "n_original": 47,
+    "n_corrected": 39,
+    "n_paired": 39,
+    "original": {
+      "2%": 5.66,
+      "6%": 0.0,
+      "10%": -5.01,
+      "15%": -10.69,
+      "20%": -15.5
+    },
+    "corrected": {
+      "2%": 5.86,
+      "6%": 0.0,
+      "10%": -5.14,
+      "15%": -10.93,
+      "20%": -15.84
+    },
+    "original_paired": {
+      "2%": 5.66,
+      "6%": 0.0,
+      "10%": -5.01,
+      "15%": -10.69,
+      "20%": -15.5
+    },
+    "corrected_paired": {
+      "2%": 5.86,
+      "6%": 0.0,
+      "10%": -5.14,
+      "15%": -10.93,
+      "20%": -15.84
+    },
+    "last_level_range_original": [
+      -15.84,
+      -15.1
+    ],
+    "last_level_range_corrected": [
+      -16.39,
+      -15.45
+    ],
+    "baseline_cap_mean_original_paired": 799.5,
+    "baseline_cap_mean_corrected_paired": 823.6,
+    "rejected_in_corrected": [
+      "D01-LAK-20-10",
+      "D01-LAK-20-11",
+      "D01-LAK-20-12",
+      "D03-NEV-89-23",
+      "D03-YOL-128-37",
+      "D03-YOL-16-36",
+      "D05-SCR-129-59",
+      "D06-KER-58-69"
+    ]
+  },
+  "delay_allsites": {
+    "n_original": 47,
+    "n_corrected": 39,
+    "original": {
+      "60": {
+        "vc": 0.13,
+        "spread_s": 1.8,
+        "mean_delay_fe105": 4.7
+      },
+      "110": {
+        "vc": 0.27,
+        "spread_s": 4.5,
+        "mean_delay_fe105": 7.8
+      },
+      "170": {
+        "vc": 0.5,
+        "spread_s": 36.6,
+        "mean_delay_fe105": 22.0
+      },
+      "250": {
+        "vc": 0.85,
+        "spread_s": 160.9,
+        "mean_delay_fe105": 158.1
+      },
+      "360": {
+        "vc": 1.44,
+        "spread_s": 231.5,
+        "mean_delay_fe105": 496.7
+      },
+      "500": {
+        "vc": 2.05,
+        "spread_s": 242.3,
+        "mean_delay_fe105": 823.8
+      }
+    },
+    "corrected": {
+      "60": {
+        "vc": 0.12,
+        "spread_s": 1.7,
+        "mean_delay_fe105": 4.5
+      },
+      "110": {
+        "vc": 0.25,
+        "spread_s": 4.0,
+        "mean_delay_fe105": 7.2
+      },
+      "170": {
+        "vc": 0.46,
+        "spread_s": 27.6,
+        "mean_delay_fe105": 17.9
+      },
+      "250": {
+        "vc": 0.8,
+        "spread_s": 148.6,
+        "mean_delay_fe105": 134.1
+      },
+      "360": {
+        "vc": 1.36,
+        "spread_s": 263.0,
+        "mean_delay_fe105": 461.3
+      },
+      "500": {
+        "vc": 1.98,
+        "spread_s": 257.5,
+        "mean_delay_fe105": 793.3
+      }
+    },
+    "rejected_in_corrected": [
+      "D01-LAK-20-10",
+      "D01-LAK-20-11",
+      "D01-LAK-20-12",
+      "D03-NEV-89-23",
+      "D03-YOL-128-37",
+      "D03-YOL-16-36",
+      "D05-SCR-129-59",
+      "D06-KER-58-69"
+    ]
+  },
+  "ec_single": {
+    "SIDRA Standard US": {
+      "original": [
+        0.0,
+        0.46,
+        1.5,
+        2.56
+      ],
+      "corrected": [
+        0.0,
+        0.41,
+        1.45,
+        2.48
+      ],
+      "caps_original": [
+        747.0,
+        750.4,
+        758.2,
+        766.1
+      ],
+      "caps_corrected": [
+        750.2,
+        753.3,
+        761.1,
+        768.8
+      ]
+    },
+    "HCM 2010": {
+      "original": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "corrected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "caps_original": [
+        757.7,
+        757.7,
+        757.7,
+        757.7
+      ],
+      "caps_corrected": [
+        757.7,
+        757.7,
+        757.7,
+        757.7
+      ]
+    },
+    "HCM 6": {
+      "original": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "corrected": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "caps_original": [
+        810.7,
+        810.7,
+        810.7,
+        810.7
+      ],
+      "caps_corrected": [
+        810.7,
+        810.7,
+        810.7,
+        810.7
+      ]
+    }
+  },
+  "screening": {
+    "original": {
+      "n_sites": 58,
+      "mean_cap_fe105": 1388,
+      "mean_of_site_caps_fe105": 1340,
+      "mean_cap_fe05": 2689,
+      "mean_cap_fe20": 874,
+      "drop_per_0.1_veh_h_range_0.9_1.3": [
+        71,
+        111
+      ],
+      "drop_per_0.1_pct_range_0.9_1.3": [
+        5.7,
+        7.2
+      ]
+    },
+    "corrected": {
+      "n_sites": 50,
+      "mean_cap_fe105": 761,
+      "mean_of_site_caps_fe105": 758,
+      "mean_cap_fe05": 2317,
+      "mean_cap_fe20": 395,
+      "drop_per_0.1_veh_h_range_0.9_1.3": [
+        59,
+        143
+      ],
+      "drop_per_0.1_pct_range_0.9_1.3": [
+        9.3,
+        14.9
+      ]
+    },
+    "failures_corrected": [
+      [
+        "D01-LAK-20-10",
+        "SIDRA processing failed [Error]: Processing (Route 20 at Route 29), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Route 29), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Route 29), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D01-LAK-20-11",
+        "SIDRA processing failed [Error]: Processing (Route 20 at Pyle Road and Nice-Lucerne Cutoff), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Pyle Road and Nice-Lucerne Cutoff), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Pyle Road and Nice-Lucerne Cutoff), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Pyle Road and Nice-Lucerne Cutoff), Error #225: Roundabout Island Diameter for West approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D01-LAK-20-12",
+        "SIDRA processing failed [Error]: Processing (Route 20 at Route 53), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Route 53), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 20 at Route 53), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D03-NEV-89-23",
+        "SIDRA processing failed [Error]: Processing (Route 89 at Truckee Way and Henness Road), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 89 at Truckee Way and Henness Road), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 89 at Truckee Way and Henness Road), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 89 at Truckee Way and Henness Road), Error #225: Roundabout Island Diameter for West approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D03-YOL-16-36",
+        "SIDRA processing failed [Error]: Processing (Route 16 at County Road 89), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 16 at County Road 89), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 16 at County Road 89), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 16 at County Road 89), Error #225: Roundabout Island Diameter for West approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D03-YOL-128-37",
+        "SIDRA processing failed [Error]: Processing (Route 128 at Walnut Lane), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 128 at Walnut Lane), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 128 at Walnut Lane), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 128 at Walnut Lane), Error #225: Roundabout Island Diameter for West approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D05-SCR-129-59",
+        "SIDRA processing failed [Error]: Processing (Route 129 at Lakeview Road), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 129 at Lakeview Road), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 129 at Lakeview Road), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ],
+      [
+        "D06-KER-58-69",
+        "SIDRA processing failed [Error]: Processing (Route 43 at Route 58 (Stockdale Highway)), Error #225: Roundabout Island Diameter for South approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 43 at Route 58 (Stockdale Highway)), Error #225: Roundabout Island Diameter for East approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 43 at Route 58 (Stockdale Highway)), Error #225: Roundabout Island Diameter for North approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum.; Processing (Route 43 at Route 58 (Stockdale Highway)), Error #225: Roundabout Island Diameter for West approach specified in the Roundabouts dialog - Roundabout Data tab is less than the allowed minimum."
+      ]
+    ]
+  }
+}

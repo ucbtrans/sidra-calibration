@@ -1,0 +1,88 @@
+{
+  "site": "synthetic",
+  "icd_m": 22.0,
+  "circ_lanes": 1,
+  "lv_per_movement": 600,
+  "hv_per_movement": 36,
+  "method": "REAL SIDRA v10 runs",
+  "models": {
+    "SIDRA Standard US": {
+      "caps": [
+        750.2,
+        753.3,
+        761.1,
+        768.8
+      ],
+      "vc": [
+        2.874,
+        2.84,
+        2.768,
+        2.694
+      ],
+      "gain_pct_vs_None": [
+        0.0,
+        0.41,
+        1.45,
+        2.48
+      ],
+      "labels": [
+        "None",
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "HCM 2010": {
+      "caps": [
+        757.7,
+        757.7,
+        757.7,
+        757.7
+      ],
+      "vc": [
+        2.454,
+        2.454,
+        2.454,
+        2.454
+      ],
+      "gain_pct_vs_None": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "labels": [
+        "None",
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "HCM 6": {
+      "caps": [
+        810.7,
+        810.7,
+        810.7,
+        810.7
+      ],
+      "vc": [
+        2.267,
+        2.267,
+        2.267,
+        2.267
+      ],
+      "gain_pct_vs_None": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "labels": [
+        "None",
+        "Low",
+        "Medium",
+        "High"
+      ]
+    }
+  }
+}

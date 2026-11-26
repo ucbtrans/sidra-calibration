@@ -105,11 +105,16 @@ class RoundaboutGeometry:
 # ---------------------------------------------------------------------------
 # Main extraction function
 # ---------------------------------------------------------------------------
+MIN_CACHE_ICD_M = 8.0   # smaller cached ICD values are treated as OSM misses
+
+
 def get_roundabout_geometry(site_id: str, lat: float, lon: float,
                             n_legs: int, lane_config: str = "single_lane",
-                            search_radius_m: float = 80.0) -> RoundaboutGeometry:
+                            search_radius_m: float = 80.0,
+                            source: str = "live",
+                            cache_path: Optional[str] = None) -> RoundaboutGeometry:
     """
-    Fetch roundabout geometry from OSM for a site.
+    Get roundabout geometry for a site.
 
     Parameters
     ----------
@@ -118,10 +123,26 @@ def get_roundabout_geometry(site_id: str, lat: float, lon: float,
     n_legs       : expected number of legs
     lane_config  : 'single_lane' or 'two_lane' (used to pick defaults)
     search_radius_m : OSM search radius around the coordinates
+    source       : 'cache'    - inscribed diameter from the OSM cache shipped
+                                with the tool (osm/parsed.json); no network
+                   'live'     - download from OSM with osmnx
+                   'defaults' - design defaults only
+    cache_path   : path to parsed.json (source='cache')
+
+    OSM geometry is a screening convenience.  For calibration, geometry must
+    match as-built plans or field measurements.
 
     Returns RoundaboutGeometry with legs populated.
     """
     geom = RoundaboutGeometry(site_id=site_id, lat=lat, lon=lon, n_legs=n_legs)
+
+    if source == "defaults":
+        geom = _apply_defaults(geom, lane_config)
+        geom.notes = "Design defaults (no OSM)."
+        return geom
+
+    if source == "cache":
+        return _from_cache(geom, lane_config, cache_path)
 
     if not _OSMNX_AVAILABLE:
         warnings.warn("osmnx not installed – using default geometry values.")
@@ -236,12 +257,25 @@ def _assign_orientations(G, center_node, neighbors: set) -> dict:
         bearing_deg = math.degrees(math.atan2(dx, dy)) % 360  # 0=N, 90=E
         bearings[n] = bearing_deg
 
-    # Sort neighbors by bearing and assign SIDRA orientation indices
-    sorted_neighbors = sorted(bearings.items(), key=lambda x: x[1])
-    # Map to nearest SIDRA orientation (0=S, 2=E, 4=N, 6=W, 1=SE, 3=NE…)
-    sidra_orientations = [0, 2, 4, 6, 1, 3, 5, 7][:len(sorted_neighbors)]
+    # Give each leg the nearest free compass orientation.  SIDRA codes:
+    # S=0 (leg lies south, bearing 180), SE=1, E=2, NE=3, N=4, NW=5, W=6, SW=7
+    code_bearing = {4: 0.0, 3: 45.0, 2: 90.0, 1: 135.0,
+                    0: 180.0, 7: 225.0, 6: 270.0, 5: 315.0}
 
-    return {n: sidra_orientations[i] for i, (n, _) in enumerate(sorted_neighbors)}
+    def gap(a, b):
+        d = abs(a - b) % 360
+        return min(d, 360 - d)
+
+    pairs = sorted((gap(b, cb), n, code)
+                   for n, b in bearings.items()
+                   for code, cb in code_bearing.items())
+    result, used = {}, set()
+    for _, n, code in pairs:
+        if n in result or code in used:
+            continue
+        result[n] = code
+        used.add(code)
+    return result
 
 
 def _get_edge_data(G, node_a, node_b) -> dict:
@@ -281,6 +315,7 @@ def _apply_defaults(geom: RoundaboutGeometry, lane_config: str) -> RoundaboutGeo
     from sidra_api import LEG_ORIENTATIONS
     orientations = LEG_ORIENTATIONS.get(geom.n_legs, LEG_ORIENTATIONS[4])
 
+    island_d = max(1.0, geom.inscribed_diameter_m - 2 * d["circulating_width_m"])
     geom.legs = [
         LegGeometry(
             leg_idx             = ori,
@@ -289,7 +324,7 @@ def _apply_defaults(geom: RoundaboutGeometry, lane_config: str) -> RoundaboutGeo
             n_exit_lanes        = d["n_exit_lanes"],
             n_circ_lanes        = d["n_circ_lanes"],
             circulating_width_m = d["circulating_width_m"],
-            island_diameter_m   = d["island_diameter_m"],
+            island_diameter_m   = island_d,
             entry_width_m       = d["entry_width_m"],
             entry_radius_m      = d["entry_radius_m"],
             entry_angle_deg     = d["entry_angle_deg"],
@@ -297,4 +332,45 @@ def _apply_defaults(geom: RoundaboutGeometry, lane_config: str) -> RoundaboutGeo
         )
         for i, ori in enumerate(orientations)
     ]
+    return geom
+
+
+# ---------------------------------------------------------------------------
+# Offline OSM cache (osm/parsed.json, shipped with the tool)
+# ---------------------------------------------------------------------------
+_CACHE: dict = {}
+
+
+def _load_cache(cache_path: Optional[str]) -> dict:
+    import json
+    from pathlib import Path
+    p = Path(cache_path) if cache_path else \
+        Path(__file__).resolve().parents[1] / "osm" / "parsed.json"
+    key = str(p)
+    if key not in _CACHE:
+        _CACHE[key] = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+    return _CACHE[key]
+
+
+def _from_cache(geom: RoundaboutGeometry, lane_config: str,
+                cache_path: Optional[str]) -> RoundaboutGeometry:
+    """
+    Design defaults with the inscribed diameter measured from the cached
+    OSM ring geometry.  Leg count and orientations come from the site list.
+    """
+    entry = _load_cache(cache_path).get(geom.site_id)
+    geom = _apply_defaults(geom, lane_config)
+    if not entry or not entry.get("found") or not entry.get("icd_m"):
+        geom.notes = "Not in OSM cache; design defaults used."
+        return geom
+    icd = float(entry["icd_m"])
+    if icd < MIN_CACHE_ICD_M:
+        geom.notes = f"Cached OSM ICD {icd:.1f} m implausible; design defaults used."
+        return geom
+    geom.inscribed_diameter_m = icd
+    geom.osm_node_id = entry.get("osm_way_id")
+    for leg in geom.legs:
+        leg.island_diameter_m = max(1.0, icd - 2 * leg.circulating_width_m)
+        leg.source = "osm_cache"
+    geom.notes = f"ICD {icd:.1f} m from OSM cache (way {entry.get('osm_way_id')}); other values are design defaults."
     return geom

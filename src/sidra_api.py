@@ -28,17 +28,27 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Bootstrap Python.NET runtime once at import time
 # ---------------------------------------------------------------------------
-_SIDRA_INSTALL = r"C:\Program Files\SIDRA SOLUTIONS\SIDRA INTERSECTION 10"
+_SIDRA_INSTALL = os.environ.get(
+    "SIDRA_PATH", r"C:\Program Files\SIDRA SOLUTIONS\SIDRA INTERSECTION 10")
 
-# US template .sipx — pre-configured with:
-#   - Right-hand traffic, US operating environment
-#   - SIDRA Standard model (HCM US single-lane defaults)
-#   - Metric units, peak-hour analysis period
-# Copied to each new project file so project-level settings are correct.
-# Path is relative to the SIDRA Project root, two levels above this file.
-_SIDRA_TEMPLATE_US = str(
-    Path(__file__).parents[2] / "SIDRA" / "v10" / "VOLUMES Example US.sipx"
-)
+# US template .sipx shipped with the tool (templates/ in the repository).
+# It holds one roundabout site configured as US HCM (Customary), right-hand
+# traffic.  New sites are CLONED from that site so they inherit the US model,
+# units and driving side.  Sites created with AddSite() get SIDRA's generic
+# "Standard Right" model in metric units, and the API cannot change a site's
+# units or driving side afterwards (both properties are read-only).
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+_SIDRA_TEMPLATE_US = str(_REPO_ROOT / "templates" / "us_roundabout_template.sipx")
+
+# Site.Units codes reported by the API
+UNITS_METRIC    = 0
+UNITS_CUSTOMARY = 1
+FT_PER_M        = 3.28084
+
+# Roundabout capacity model codes (site.ModelSetting.Rou_Capacity_Model)
+MODEL_SIDRA_STANDARD = 0
+MODEL_HCM2010        = 1
+MODEL_HCM6           = 2
 _RUNTIME_CONFIG = os.path.join(_SIDRA_INSTALL, "SIDRASolutions.SI.API.runtimeconfig.json")
 _API_DLL        = os.path.join(_SIDRA_INSTALL, "SIDRASolutions.SI.API.dll")
 
@@ -127,35 +137,39 @@ class SIDRASession:
     def create_project(self, filepath: str, name: str = "Calibration",
                        template: str = None):
         """
-        Create a new .sipx project and open it.
+        Create a new .sipx project from the US template and open it.
 
-        Copies the US template file to filepath so the project inherits
-        correct project-level settings (right-hand traffic, US operating
-        environment, SIDRA Standard / HCM model, analysis period).
-        Falls back to CreateAndOpenProject if the template is not found.
+        The template is required.  Without it every site would be built with
+        SIDRA's generic metric model instead of US HCM (Customary), so the
+        tool stops instead of silently continuing.
 
         Parameters
         ----------
         filepath : destination .sipx path (created if necessary)
         name     : project name label
-        template : override template path (default: VOLUMES Example US.sipx)
+        template : override template path
+                   (default: templates/us_roundabout_template.sipx)
         """
         Path(filepath).parent.mkdir(parents=True, exist_ok=True)
 
         tpl = template or _SIDRA_TEMPLATE_US
-        if os.path.isfile(tpl):
-            shutil.copy2(tpl, filepath)
-            self._api.OpenProject(filepath)
-        else:
-            # Template not found — create from scratch and warn
-            import warnings
-            warnings.warn(
+        if not os.path.isfile(tpl):
+            raise FileNotFoundError(
                 f"SIDRA US template not found at:\n  {tpl}\n"
-                "Project-level settings (model type, operating environment) "
-                "will use SIDRA installation defaults.",
-                UserWarning,
+                "The template ships with the tool in the templates/ folder. "
+                "Restore it from the repository before running."
             )
-            self._api.CreateAndOpenProject(filepath, name)
+        shutil.copy2(tpl, filepath)
+        # Cloud-sync clients (Dropbox, OneDrive) can lock a new file briefly
+        import time
+        for attempt in range(6):
+            try:
+                self._api.OpenProject(filepath)
+                break
+            except Exception as e:
+                if "being used by another process" not in str(e) or attempt == 5:
+                    raise
+                time.sleep(2)
 
         self._project = self._api.Project
         try:
@@ -180,18 +194,53 @@ class SIDRASession:
     # ------------------------------------------------------------------
     # Site creation
     # ------------------------------------------------------------------
+    def find_template_roundabout(self):
+        """Return (folder, site) for the US right-hand roundabout in the open project."""
+        if self._project is None:
+            raise RuntimeError("No project is open.")
+        proj = self._project
+        for fi in range(proj.SiteFolders.Count):
+            folder = proj.SiteFolders[fi]
+            for si in range(folder.Sites.Count):
+                s = folder.Sites[si]
+                if s.Sitetype == 1 and not s.Driveonleft and \
+                        int(s.Units) == UNITS_CUSTOMARY:
+                    return folder, s
+        raise RuntimeError("US roundabout site (customary units, right-hand "
+                           "traffic) not found in the template.")
+
+    def add_roundabout_site_from_template(self, name: str) -> object:
+        """
+        Clone the template's US roundabout site, strip its legs and return it.
+
+        The clone keeps the template's model (US HCM Customary), units,
+        right-hand traffic and analysis settings.  All other sites are removed
+        from the project so the saved .sipx holds only the new site.
+        Legs are added afterwards with configure_leg().
+        """
+        folder, src = self.find_template_roundabout()
+        site = folder.CloneSite(src)
+        site.Name = name
+        for ori in range(8):
+            if site.Legs[ori] is not None:
+                site.RemoveLeg(ori)
+        proj = self._project
+        for fi in range(proj.SiteFolders.Count):
+            f = proj.SiteFolders[fi]
+            for si in reversed(range(f.Sites.Count)):
+                s = f.Sites[si]
+                if s.Site_id != site.Site_id:
+                    f.RemoveSite(s)
+        return site
+
     def add_roundabout_site(self, name: str, n_legs: int,
                             folder_name: str = "Sites") -> object:
         """
-        Add a roundabout site to the project.
+        Add a blank roundabout site with AddSite().
 
-        Parameters
-        ----------
-        name      : site label
-        n_legs    : number of legs (3–6)
-        folder_name : name of the site folder to create/use
-
-        Returns the ISIAPISite object.
+        Note: SIDRA gives such sites the generic "Standard Right" model in
+        metric units, not US HCM (Customary).  Use
+        add_roundabout_site_from_template() for US analysis.
         """
         if self._project is None:
             raise RuntimeError("No project is open.")
@@ -200,6 +249,40 @@ class SIDRASession:
         site = folder.AddSite(1, n_legs)
         site.Name = name
         return site
+
+    # ------------------------------------------------------------------
+    # Units
+    # ------------------------------------------------------------------
+    @staticmethod
+    def is_customary(site) -> bool:
+        """True when the site stores lengths in feet (US Customary)."""
+        try:
+            return int(site.Units) == UNITS_CUSTOMARY
+        except Exception:
+            return False
+
+    def length_in_site_units(self, site, metres: float) -> float:
+        """Convert a length in metres to the site's own length unit."""
+        return metres * FT_PER_M if self.is_customary(site) else metres
+
+    def set_inscribed_diameter(self, site, icd_m: float,
+                               circ_lanes: int = None):
+        """
+        Set the island diameter on every leg from an INSCRIBED diameter (m).
+
+        SIDRA's Island_diameter is the central island, so the value written
+        is ICD - 2 x circulating width, in the site's own length unit.
+        """
+        for leg_idx in range(8):
+            leg = self._get_leg(site, leg_idx)
+            if leg is None:
+                continue
+            rleg = leg.Leg_roundabout
+            if circ_lanes is not None:
+                rleg.Num_circulating_lanes = int(circ_lanes)
+            icd = self.length_in_site_units(site, icd_m)
+            island = icd - 2.0 * float(rleg.Circulating_width)
+            rleg.Island_diameter = max(island, 1.0)
 
     # ------------------------------------------------------------------
     # Geometry
@@ -233,17 +316,19 @@ class SIDRASession:
         for _ in range(n_entry_lanes):
             leg.InsertApproachLane(pos); pos += 1
 
-        # Roundabout geometry
+        # Roundabout geometry.  Inputs are metres; SIDRA expects the site's
+        # own length unit (feet for US Customary sites).
+        L = lambda m: self.length_in_site_units(site, m)
         rleg = leg.Leg_roundabout
         rleg.Num_circulating_lanes = n_circ_lanes
-        rleg.Circulating_width     = circ_width_m
-        rleg.Island_diameter       = island_diameter_m
+        rleg.Circulating_width     = L(circ_width_m)
+        rleg.Island_diameter       = L(island_diameter_m)
 
         # Lane geometry (entry width, radius, angle)
         # These are set on the leg level in SIDRA v10
         try:
-            rleg.Entry_width = entry_width_m
-            rleg.Entry_radius = entry_radius_m
+            rleg.Entry_width = L(entry_width_m)
+            rleg.Entry_radius = L(entry_radius_m)
             rleg.Entry_angle  = entry_angle_deg
         except AttributeError:
             # Property names may vary – skip silently; defaults will be used
@@ -328,27 +413,49 @@ class SIDRASession:
                 continue
             leg.Leg_roundabout.Environment_factor = fe
 
-    def set_hcm_calibration_factor(self, site, cf: float):
+    def set_hcm_calibration_factor(self, site, cf: float,
+                                   model: int = MODEL_HCM6):
         """
-        Set the HCM6 Model Calibration Factor on all legs.
-        cf default: 1.0; values > 1.0 decrease capacity.
-        Property: LegRouHCM6.Model_calib_factor
+        Set the HCM Model Calibration Factor (cf) on all legs.
 
-        IMPORTANT: This only takes effect when the site is in HCM6 mode
-        (site.Hcm == True). As of SIDRA v10, site.Hcm is read-only via the API
-        and can only be set through the SIDRA GUI (Site Settings → Model → HCM 6).
-        To use HCM6 calibration programmatically, open a .sipx file that was
-        pre-configured in HCM6 mode via the GUI.
+        model : MODEL_HCM6 (LegRouHCM6) or MODEL_HCM2010 (LegRouHCM2010).
+        cf only changes results when the site runs that capacity model;
+        select it first with set_capacity_model().
         """
         for leg_idx in range(8):
             leg = self._get_leg(site, leg_idx)
             if leg is None:
                 continue
-            leg.Leg_roundabout.LegRouHCM6.Model_calib_factor = cf
+            rleg = leg.Leg_roundabout
+            if model == MODEL_HCM2010:
+                rleg.LegRouHCM2010.Model_calib_factor = cf
+            else:
+                rleg.LegRouHCM6.Model_calib_factor = cf
+
+    def set_capacity_model(self, site, model: int):
+        """
+        Select the roundabout capacity model:
+        MODEL_SIDRA_STANDARD (0), MODEL_HCM2010 (1) or MODEL_HCM6 (2).
+        """
+        site.ModelSetting.Rou_Capacity_Model = int(model)
+
+    def get_capacity_model(self, site) -> int:
+        return int(site.ModelSetting.Rou_Capacity_Model)
+
+    def set_calibration_parameter(self, site, value: float):
+        """
+        Set the parameter that belongs to the site's current capacity model:
+        fe for SIDRA Standard, cf for HCM 2010 / HCM 6.
+        """
+        model = self.get_capacity_model(site)
+        if model == MODEL_SIDRA_STANDARD:
+            self.set_environment_factor(site, value)
+        else:
+            self.set_hcm_calibration_factor(site, value, model)
 
     def is_hcm6_mode(self, site) -> bool:
-        """Return True if the site is using the HCM6 capacity model."""
-        return bool(self._safe_get(site, "Hcm", False))
+        """Return True if the site is using the HCM 6 capacity model."""
+        return self.get_capacity_model(site) == MODEL_HCM6
 
     # ------------------------------------------------------------------
     # Processing
