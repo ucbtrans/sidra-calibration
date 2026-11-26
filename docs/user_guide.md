@@ -478,4 +478,4 @@ The two parameters work differently. fe is behavioral: it scales critical gap (t
 |---|---|---|
 | Principal Investigator | Alexander Skabardonis | -- |
 | Co-PI | Alexander Kurzhanskiy |akurzhan@berkeley.edu |
-| Repository | github.com/ucbtrans/sidra-calibration | -- |
+| Repository | github.com/ucbtrans/sidra-calibration | — |

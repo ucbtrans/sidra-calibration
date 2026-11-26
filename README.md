@@ -186,7 +186,9 @@ Default parameter ranges:
 - Environment Factor (fe), SIDRA Standard US: 0.5 to 2.0 (US single-lane default 1.05)
 - Model Calibration Factor (cf), HCM 2010 / HCM 6: 0.7 to 1.3
 
-Capacity, queue and delay targets need near-saturation conditions in the field. Critical gap and follow-up headway can be measured from video without saturation, and they apply only to the SIDRA Standard US model.
+Capacity, queue, and delay targets require near-saturation field conditions.
+Critical gap and follow-up headway can be measured from video without
+saturation, and apply to the SIDRA Standard US model only.
 
 ## Citation
 
