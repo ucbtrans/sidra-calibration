@@ -31,8 +31,9 @@ class TestAssignApproachVolumes:
         idxs = [0, 2, 4]
         vols = _assign_approach_volumes(idxs, ph_main=500, ph_cross=200,
                                         is_ramp=False, n_legs=3)
+        # Both approaches of the main route carry main-route volume
         assert vols[0] == 500
-        assert vols[2] == 200
+        assert vols[2] == 500
         assert vols[4] == 200
 
     def test_four_leg_ramp(self):
@@ -44,12 +45,15 @@ class TestAssignApproachVolumes:
         assert vols[2] == 200
         assert vols[6] == 200
 
-    def test_four_leg_crossroad_equal(self):
+    def test_four_leg_crossroad(self):
         idxs = [0, 2, 4, 6]
         vols = _assign_approach_volumes(idxs, ph_main=400, ph_cross=200,
                                         is_ramp=False, n_legs=4)
-        # All equal: (400+200)//4 = 150
-        assert all(v == 150 for v in vols.values())
+        # Opposite legs 0/4 on the main route, 2/6 on the cross road;
+        # total entry = 2 x main + 2 x cross (v1.0 gave only main + cross)
+        assert vols[0] == vols[4] == 400
+        assert vols[2] == vols[6] == 200
+        assert sum(vols.values()) == 1200
 
     def test_two_leg_fallback(self):
         idxs = [0, 4]
@@ -183,3 +187,157 @@ class TestAADTLookup:
     def test_lookup_returns_none_without_data(self):
         lookup = AADTLookup("/nonexistent/path.csv")
         assert lookup.lookup("101", 88.0, district=1) is None
+
+
+# ---------------------------------------------------------------------------
+# v1.1: exact rounding, census layout, segment containment, configurable factors
+# ---------------------------------------------------------------------------
+from volumes import (_split_integer, load_turning_counts,
+                     observed_turning_movements, CROSS_RATIO)
+
+CENSUS_HEADER = ("DISTRICT,RTE,RTE_SFX,CNTY,PM_PFX,PM,PM_SFX,DESCRIPTION,"
+                 "BACK_PEAK_HOUR,BACK_PEAK_MADT,BACK_AADT,"
+                 "AHEAD_PEAK_HOUR,AHEAD_PEAK_MADT,AHEAD_AADT")
+
+
+def _census(tmp_path, rows, preamble=""):
+    f = tmp_path / "census.csv"
+    f.write_text(preamble + CENSUS_HEADER + "\n" + "\n".join(rows) + "\n",
+                 encoding="utf-8")
+    return AADTLookup(str(f))
+
+
+class TestExactRounding:
+    def test_movements_sum_to_approach(self):
+        idxs = [0, 2, 4, 6]
+        vols = {0: 49, 2: 50, 4: 51, 6: 47}
+        od = _distribute_od(idxs, vols, is_ramp=False, hv_pct=0.06)
+        for leg, total in vols.items():
+            assert sum(lv + hv for (o, _), (lv, hv) in od.items() if o == leg) == total
+
+    def test_split_integer_exact(self):
+        for total in (3, 7, 46, 101, 999):
+            parts = _split_integer(total, [0.25, 0.5, 0.25])
+            assert sum(parts) == total
+            assert min(parts) >= 1
+
+    def test_split_integer_zero(self):
+        assert _split_integer(0, [0.5, 0.5]) == [0, 0]
+
+
+class TestCensusLayout:
+    def test_reads_raw_census_with_preamble(self, tmp_path):
+        lk = _census(tmp_path, ["1,199,,DN,,0.00,,JCT RTE 101,800,,7000,820,,7200"],
+                     preamble="Caltrans Traffic Volumes\n\n")
+        assert lk.layout == "census"
+        assert lk.lookup("199", 0.5, county="DN") == 7200
+
+    def test_ahead_before_back_after(self, tmp_path):
+        rows = ["1,199,,DN,,1.00,,A,600,,5000,610,,5100",
+                "1,199,,DN,,4.00,,B,700,,6000,710,,6100"]
+        lk = _census(tmp_path, rows)
+        # 1.5 is nearer PM 1.00 -> AHEAD of 1.00
+        assert lk.lookup("199", 1.5, county="DN") == 5100
+        # 3.8 is nearer PM 4.00 -> BACK of 4.00
+        assert lk.lookup("199", 3.8, county="DN") == 6000
+
+    def test_county_separates_postmiles(self, tmp_path):
+        rows = ["3,50,,ED,,5.00,,X,900,,9000,900,,9000",
+                "3,50,,SAC,,5.00,,Y,3000,,30000,3000,,30000"]
+        lk = _census(tmp_path, rows)
+        assert lk.lookup("50", 5.0, district=3, county="ED") == 9000
+        assert lk.lookup("50", 5.0, district=3, county="SAC") == 30000
+
+    def test_peak_hour_used(self, tmp_path):
+        lk = _census(tmp_path, ["1,199,,DN,,0.00,,J,800,,7000,820,,7200"])
+        rec = lk.lookup_record("199", 0.2, county="DN")
+        assert rec.peak_hour == 820
+        tm = generate_turning_movements(
+            "C1", 4, [0, 2, 4, 6], False, "199", 0.2, county="DN",
+            aadt_lookup=lk, d_factor=0.5)
+        assert tm.aadt_source == "caltrans_census"
+        assert tm.peak_hour_basis == "census_peak_hour"
+        assert tm.approach_volumes[0] == 410          # 820 x 0.5
+        assert tm.aadt2_assumed and tm.aadt2 == round(7200 * CROSS_RATIO)
+
+    def test_too_far_returns_none(self, tmp_path):
+        lk = _census(tmp_path, ["1,199,,DN,,0.00,,J,800,,7000,820,,7200"])
+        assert lk.lookup("199", 20.0, county="DN") is None
+
+    def test_suffixed_route_skipped(self, tmp_path):
+        lk = _census(tmp_path, ["1,199,U,DN,,0.00,,BUS,800,,7000,820,,7200"])
+        assert lk.lookup("199", 0.0, county="DN") is None
+
+    def test_reads_xlsx(self, tmp_path):
+        from openpyxl import Workbook
+        wb = Workbook(); ws = wb.active
+        ws.append(["Caltrans Traffic Volumes"]); ws.append([])
+        ws.append(CENSUS_HEADER.split(","))
+        ws.append([1, 199, None, "DN", None, 0.0, None, "J", 800, None, 7000, 820, None, 7200])
+        f = tmp_path / "census.xlsx"; wb.save(f)
+        lk = AADTLookup(str(f))
+        assert lk.layout == "census"
+        assert lk.lookup("199", 0.1, county="DN") == 7200
+
+
+class TestSegmentLayout:
+    def test_containment_near_end_of_long_segment(self, tmp_path):
+        f = tmp_path / "seg.csv"
+        f.write_text("district,route,pm_start,pm_end,aadt\n"
+                     "1,101,0.0,6.0,15000\n1,101,6.0,9.0,22000\n")
+        lk = AADTLookup(str(f))
+        # v1.0 midpoint rule rejected 5.5 (2.5 mi from midpoint 3.0)
+        assert lk.lookup("101", 5.5, district=1) == 15000
+        assert lk.lookup("101", 7.0, district=1) == 22000
+
+
+class TestConfigurableFactors:
+    def test_k_d_hv_cross(self):
+        kw = dict(site_id="F", n_legs=4, leg_idxs=[0, 2, 4, 6], is_ramp=False,
+                  route1="1", pm1=1.0, scenario="medium")
+        a = generate_turning_movements(**kw)
+        b = generate_turning_movements(**kw, k_factor=0.10, d_factor=0.60,
+                                       hv_pct=0.0, cross_ratio=1.0)
+        assert b.total_entry > a.total_entry
+        assert all(hv == 0 for _, hv in b.volumes.values())
+        assert b.approach_volumes[0] == b.approach_volumes[2]
+
+
+class TestObservedCounts:
+    def test_load_and_build(self, tmp_path):
+        f = tmp_path / "counts.csv"
+        f.write_text("site_id,from_leg,to_leg,lv,hv\n"
+                     "X,S,N,100,5\nX,N,S,90,\nX,E,W,40,2\nX,W,E,30,1\n")
+        counts = load_turning_counts(str(f))
+        assert counts["X"][(0, 4)] == (100, 5)
+        assert counts["X"][(4, 0)] == (90, 0)
+        tm = observed_turning_movements("X", [0, 2, 4, 6], counts["X"])
+        assert tm.aadt_source == "observed_counts"
+        assert tm.total_entry == 100 + 5 + 90 + 40 + 2 + 30 + 1
+
+    def test_unknown_leg_rejected(self):
+        with pytest.raises(ValueError):
+            observed_turning_movements("X", [0, 2, 4], {(6, 0): (10, 0)})
+
+
+class TestInterchangeSites:
+    def test_freeway_volume_not_used(self, tmp_path):
+        lk = _census(tmp_path, ["7,5,,LA,,56.60,,I-5 MAINLINE,6900,,108000,6900,,108000"])
+        tm = generate_turning_movements(
+            "R1", 4, [0, 2, 4, 6], True, "5", 56.6, county="LA",
+            aadt_lookup=lk, scenario="medium")
+        assert tm.aadt_source == "synthetic"
+        assert tm.aadt1 == SYNTHETIC_AADT["medium"]
+        assert "freeway mainline" in tm.notes
+
+    def test_crossing_state_route_used(self, tmp_path):
+        rows = ["3,80,,NEV,,10.00,,I-80 MAINLINE,4000,,40000,4000,,40000",
+                "3,89,,NEV,,0.50,,RTE 89,500,,5000,520,,5200"]
+        lk = _census(tmp_path, rows)
+        tm = generate_turning_movements(
+            "R2", 4, [0, 2, 4, 6], True, "80", 10.0, route2="89", pm2=0.6,
+            county="NEV", aadt_lookup=lk, d_factor=0.5)
+        assert tm.aadt_source == "caltrans_census"
+        assert tm.main_route == "89" and tm.aadt1 == 5200
+        assert tm.approach_volumes[0] == 260            # 520 x 0.5
+        assert tm.aadt2_assumed

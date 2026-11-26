@@ -1,0 +1,2044 @@
+{
+  "D01-DN-199-6": {
+    "found": false,
+    "osm_way_id": null,
+    "icd_m": null,
+    "n_ring_nodes": 0,
+    "approach_ways": [],
+    "warning": "no roundabout way found",
+    "lat": 41.807824,
+    "lon": -124.147525
+  },
+  "D01-HUM-101-7": {
+    "found": false,
+    "osm_way_id": null,
+    "icd_m": null,
+    "n_ring_nodes": 0,
+    "approach_ways": [],
+    "warning": "no roundabout way found",
+    "lat": 40.904,
+    "lon": -124.0892
+  },
+  "D01-HUM-101-8": {
+    "found": false,
+    "osm_way_id": null,
+    "icd_m": null,
+    "n_ring_nodes": 0,
+    "approach_ways": [],
+    "warning": "no roundabout way found",
+    "lat": 40.90492,
+    "lon": -124.0851
+  },
+  "D01-HUM-101-9": {
+    "found": false,
+    "osm_way_id": null,
+    "icd_m": null,
+    "n_ring_nodes": 0,
+    "approach_ways": [],
+    "warning": "no roundabout way found",
+    "lat": 40.87869,
+    "lon": -124.0815
+  },
+  "D01-LAK-20-10": {
+    "found": true,
+    "osm_way_id": 646382575,
+    "icd_m": 15.9,
+    "n_ring_nodes": 7,
+    "approach_ways": [
+      {
+        "osm_id": 646382569,
+        "name": "CA 20",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1245444323,
+        "name": "CA 20",
+        "highway": "trunk",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.163327,
+    "lon": -122.920946
+  },
+  "D01-LAK-20-11": {
+    "found": true,
+    "osm_way_id": 1213792321,
+    "icd_m": 15.0,
+    "n_ring_nodes": 5,
+    "approach_ways": [
+      {
+        "osm_id": 673959920,
+        "name": "CA 20",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 673959924,
+        "name": "CA 20",
+        "highway": "primary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.13028,
+    "lon": -122.87111
+  },
+  "D01-LAK-20-12": {
+    "found": true,
+    "osm_way_id": 1016974051,
+    "icd_m": 12.3,
+    "n_ring_nodes": 4,
+    "approach_ways": [
+      {
+        "osm_id": 1016974070,
+        "name": "CA 20",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1016974071,
+        "name": "CA 20",
+        "highway": "trunk",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.00853,
+    "lon": -122.61424
+  },
+  "D01-LAK-29-13": {
+    "found": true,
+    "osm_way_id": 801690196,
+    "icd_m": 44.2,
+    "n_ring_nodes": 31,
+    "approach_ways": [
+      {
+        "osm_id": 801690195,
+        "name": "CA 29",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1154029501,
+        "name": "CA 29",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1154029503,
+        "name": "Hartmann Road",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1154029504,
+        "name": "Hartmann Road",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1154029505,
+        "name": "CA 29",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1154029506,
+        "name": "CA 29",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 38.792735,
+    "lon": -122.565557
+  },
+  "D01-MEN-175-14": {
+    "found": true,
+    "osm_way_id": 406529238,
+    "icd_m": 29.7,
+    "n_ring_nodes": 12,
+    "approach_ways": [
+      {
+        "osm_id": 10313359,
+        "name": "Old River Road",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 406529242,
+        "name": "Lakeport-Hopland Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 406529243,
+        "name": "Main Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 406529244,
+        "name": "Old River Road",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 406529245,
+        "name": "",
+        "highway": "service",
+        "lanes": null
+      },
+      {
+        "osm_id": 497348846,
+        "name": "",
+        "highway": "service",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 38.97746,
+    "lon": -123.0991
+  },
+  "D01-MEN-1-15": {
+    "found": true,
+    "osm_way_id": 339854857,
+    "icd_m": 20.1,
+    "n_ring_nodes": 9,
+    "approach_ways": [
+      {
+        "osm_id": 660075777,
+        "name": "Simpson Lane",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 660075778,
+        "name": "Simpson Lane",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 660075779,
+        "name": "Shoreline Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 660075784,
+        "name": "Shoreline Highway",
+        "highway": "primary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.41239,
+    "lon": -123.8083
+  },
+  "D02-SHA-5-16": {
+    "found": true,
+    "osm_way_id": 377678463,
+    "icd_m": 45.8,
+    "n_ring_nodes": 31,
+    "approach_ways": [
+      {
+        "osm_id": 377678464,
+        "name": "Deschutes Road",
+        "highway": "secondary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 377678465,
+        "name": "Deschutes Road",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 377678468,
+        "name": "Locust Street",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 377678469,
+        "name": "Locust Street",
+        "highway": "tertiary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 377678470,
+        "name": "Deschutes Road",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 377678471,
+        "name": "Deschutes Road",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 615786582,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 2
+      },
+      {
+        "osm_id": 634408629,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 40.43782,
+    "lon": -122.28602
+  },
+  "D03-BUT-99-17": {
+    "found": true,
+    "osm_way_id": 1133495912,
+    "icd_m": 37.1,
+    "n_ring_nodes": 20,
+    "approach_ways": [
+      {
+        "osm_id": 1133495914,
+        "name": "Eaton Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1133495915,
+        "name": "Eaton Road",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1133495918,
+        "name": "Hicks Lane",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1313692733,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1479903979,
+        "name": "Eaton Road",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1479903980,
+        "name": "Hicks Lane",
+        "highway": "residential",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.775203,
+    "lon": -121.872244
+  },
+  "D03-ED-50-18": {
+    "found": true,
+    "osm_way_id": 702944100,
+    "icd_m": 22.2,
+    "n_ring_nodes": 7,
+    "approach_ways": [
+      {
+        "osm_id": 760437185,
+        "name": "US 50",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 760437187,
+        "name": "US 50;CA 89",
+        "highway": "trunk",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 38.85124,
+    "lon": -120.022459
+  },
+  "D03-NEV-20-19": {
+    "found": true,
+    "osm_way_id": 1067752264,
+    "icd_m": 33.0,
+    "n_ring_nodes": 24,
+    "approach_ways": [
+      {
+        "osm_id": 27241482,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 27241636,
+        "name": "Idaho Maryland Road",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 36913091,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 419547738,
+        "name": "East Main Street",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 419547742,
+        "name": "East Main Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 419547743,
+        "name": "Idaho Maryland Road",
+        "highway": "secondary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 419547745,
+        "name": "East Main Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 419547747,
+        "name": "East Main Street",
+        "highway": "secondary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.22171,
+    "lon": -121.05378
+  },
+  "D03-NEV-80-21": {
+    "found": true,
+    "osm_way_id": 1087103646,
+    "icd_m": 24.8,
+    "n_ring_nodes": 13,
+    "approach_ways": [
+      {
+        "osm_id": 1087103639,
+        "name": "Cold Stream Road",
+        "highway": "unclassified",
+        "lanes": null
+      },
+      {
+        "osm_id": 1087103641,
+        "name": "Cold Stream Road",
+        "highway": "unclassified",
+        "lanes": null
+      },
+      {
+        "osm_id": 1087103643,
+        "name": "Donner Pass Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1087103645,
+        "name": "Donner Pass Road",
+        "highway": "secondary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.32358,
+    "lon": -120.227467
+  },
+  "D03-NEV-80-22": {
+    "found": true,
+    "osm_way_id": 350491054,
+    "icd_m": 23.9,
+    "n_ring_nodes": 11,
+    "approach_ways": [
+      {
+        "osm_id": 350491024,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 350491056,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 39.32243,
+    "lon": -120.2077
+  },
+  "D03-NEV-89-23": {
+    "found": true,
+    "osm_way_id": 350491043,
+    "icd_m": 11.9,
+    "n_ring_nodes": 8,
+    "approach_ways": [
+      {
+        "osm_id": 350491030,
+        "name": "Frates Lane",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 350491061,
+        "name": "CA 89",
+        "highway": "motorway_link",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 39.32386,
+    "lon": -120.2076
+  },
+  "D03-NEV-89-24": {
+    "found": true,
+    "osm_way_id": 350491048,
+    "icd_m": 23.3,
+    "n_ring_nodes": 6,
+    "approach_ways": [
+      {
+        "osm_id": 350491155,
+        "name": "Henness Road",
+        "highway": "residential",
+        "lanes": 1
+      },
+      {
+        "osm_id": 350491156,
+        "name": "Henness Road",
+        "highway": "residential",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.34103,
+    "lon": -120.1722
+  },
+  "D03-PLA-89-28": {
+    "found": true,
+    "osm_way_id": 613103859,
+    "icd_m": 23.4,
+    "n_ring_nodes": 7,
+    "approach_ways": [
+      {
+        "osm_id": 614306619,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 614306621,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 614306623,
+        "name": "Alder Drive",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 614306624,
+        "name": "Alder Drive",
+        "highway": "tertiary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.34531,
+    "lon": -120.173
+  },
+  "D03-PLA-89-29": {
+    "found": true,
+    "osm_way_id": 1462689738,
+    "icd_m": 36.3,
+    "n_ring_nodes": 25,
+    "approach_ways": [
+      {
+        "osm_id": 1462689739,
+        "name": "El Dorado Street",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1462689740,
+        "name": "El Dorado Street",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1462689741,
+        "name": "Borland Avenue",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1462689742,
+        "name": "Borland Avenue",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1462689743,
+        "name": "El Dorado Street",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1462689744,
+        "name": "El Dorado Street",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1462689745,
+        "name": "Lincoln Way",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1462689746,
+        "name": "Lincoln Way",
+        "highway": "tertiary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 38.904096,
+    "lon": -121.065628
+  },
+  "D03-PLA-28-31": {
+    "found": true,
+    "osm_way_id": 1431571220,
+    "icd_m": 37.7,
+    "n_ring_nodes": 21,
+    "approach_ways": [
+      {
+        "osm_id": 1431571221,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571222,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571223,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571224,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571226,
+        "name": "Lone Star Road",
+        "highway": "residential",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571227,
+        "name": "Lone Star Road",
+        "highway": "residential",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571228,
+        "name": "Lone Star Road",
+        "highway": "tertiary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1431571229,
+        "name": "Lone Star Road",
+        "highway": "tertiary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 38.996548,
+    "lon": -121.109037
+  },
+  "D03-PLA-28-32": {
+    "found": true,
+    "osm_way_id": 1420633477,
+    "icd_m": 37.5,
+    "n_ring_nodes": 21,
+    "approach_ways": [
+      {
+        "osm_id": 1420633478,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1420633479,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1420633480,
+        "name": "Lorenson Road",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1420633481,
+        "name": "Lorenson Road",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1420633482,
+        "name": "Florence Lane",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1420633483,
+        "name": "Florence Lane",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1420633484,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1420633485,
+        "name": "Grass Valley Highway",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 38.978225,
+    "lon": -121.108341
+  },
+  "D03-PLA-80-33": {
+    "found": true,
+    "osm_way_id": 744127194,
+    "icd_m": 34.8,
+    "n_ring_nodes": 17,
+    "approach_ways": [
+      {
+        "osm_id": 744127188,
+        "name": "",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 744127189,
+        "name": "",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 744127190,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 744127193,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.162911,
+    "lon": -120.144439
+  },
+  "D03-SAC-99-34": {
+    "found": true,
+    "osm_way_id": 623163929,
+    "icd_m": 24.2,
+    "n_ring_nodes": 12,
+    "approach_ways": [
+      {
+        "osm_id": 744127199,
+        "name": "CA 28",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 744127200,
+        "name": "CA 28",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 744127201,
+        "name": "CA 89",
+        "highway": "primary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.16425,
+    "lon": -120.14919
+  },
+  "D03-SAC-99-35": {
+    "found": true,
+    "osm_way_id": 1332742484,
+    "icd_m": 7.8,
+    "n_ring_nodes": 7,
+    "approach_ways": [
+      {
+        "osm_id": 412835720,
+        "name": "",
+        "highway": "cycleway",
+        "lanes": null
+      },
+      {
+        "osm_id": 412835786,
+        "name": "",
+        "highway": "cycleway",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.1676357,
+    "lon": -120.1452237
+  },
+  "D03-YOL-16-36": {
+    "found": true,
+    "osm_way_id": 413430523,
+    "icd_m": 13.5,
+    "n_ring_nodes": 7,
+    "approach_ways": [
+      {
+        "osm_id": 413430441,
+        "name": "North Lake Boulevard",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 413430539,
+        "name": "North Lake Boulevard",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 841657688,
+        "name": "",
+        "highway": "service",
+        "lanes": null
+      },
+      {
+        "osm_id": 1052575121,
+        "name": "",
+        "highway": "service",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.236814,
+    "lon": -120.024649
+  },
+  "D03-YOL-128-37": {
+    "found": true,
+    "osm_way_id": 413430516,
+    "icd_m": 13.4,
+    "n_ring_nodes": 8,
+    "approach_ways": [
+      {
+        "osm_id": 413430438,
+        "name": "Raccoon Street",
+        "highway": "residential",
+        "lanes": 1
+      },
+      {
+        "osm_id": 413430533,
+        "name": "North Lake Boulevard",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 413430543,
+        "name": "North Lake Boulevard",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 740853826,
+        "name": "Raccoon Street",
+        "highway": "residential",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 39.235885,
+    "lon": -120.022073
+  },
+  "D04-NAP-29-42": {
+    "found": true,
+    "osm_way_id": 1170051108,
+    "icd_m": 25.4,
+    "n_ring_nodes": 14,
+    "approach_ways": [
+      {
+        "osm_id": 179374340,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 981255260,
+        "name": "South Auburn Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 981255262,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1170051109,
+        "name": "South Auburn Street",
+        "highway": "secondary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 39.094722,
+    "lon": -120.950788
+  },
+  "D04-SCL-152-43": {
+    "found": true,
+    "osm_way_id": 702174042,
+    "icd_m": 32.2,
+    "n_ring_nodes": 24,
+    "approach_ways": [
+      {
+        "osm_id": 185578780,
+        "name": "Stockton Boulevard",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 702174041,
+        "name": "Twin Cities Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 971980107,
+        "name": "Stockton Boulevard",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 971980109,
+        "name": "Stockton Boulevard",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 971980110,
+        "name": "Twin Cities Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 971980111,
+        "name": "Stockton Boulevard",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 971980112,
+        "name": "Twin Cities Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 971980114,
+        "name": "Twin Cities Road",
+        "highway": "secondary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 38.2910494,
+    "lon": -121.3134041
+  },
+  "D04-SOL-12-44": {
+    "found": false,
+    "warning": "coordinates outside California bbox (lat=28.2910831, lon=-121.311044) \u2014 SKIPPED",
+    "lat": 28.2910831,
+    "lon": -121.311044
+  },
+  "D05-MON-1-45": {
+    "found": true,
+    "osm_way_id": 1209033438,
+    "icd_m": 30.8,
+    "n_ring_nodes": 13,
+    "approach_ways": [
+      {
+        "osm_id": 10744452,
+        "name": "",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 617735676,
+        "name": "CA 16",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 617735677,
+        "name": "CA 16",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1190128812,
+        "name": "County Road 89",
+        "highway": "unclassified",
+        "lanes": null
+      },
+      {
+        "osm_id": 1190128813,
+        "name": "County Road 89",
+        "highway": "unclassified",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 38.681841,
+    "lon": -121.967267
+  },
+  "D05-SB-246-51": {
+    "found": true,
+    "osm_way_id": 612801262,
+    "icd_m": 25.8,
+    "n_ring_nodes": 11,
+    "approach_ways": [
+      {
+        "osm_id": 10745178,
+        "name": "East Grant Avenue",
+        "highway": "secondary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 10745627,
+        "name": "Walnut Lane",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1435865043,
+        "name": "East Grant Avenue",
+        "highway": "secondary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 38.526291,
+    "lon": -121.967329
+  },
+  "D05-SB-101-53": {
+    "found": false,
+    "osm_way_id": null,
+    "icd_m": null,
+    "n_ring_nodes": 0,
+    "approach_ways": [],
+    "warning": "no roundabout way found",
+    "lat": 37.89805,
+    "lon": -122.307795
+  },
+  "D05-SCR-129-59": {
+    "found": true,
+    "osm_way_id": 1296429668,
+    "icd_m": 14.3,
+    "n_ring_nodes": 4,
+    "approach_ways": [
+      {
+        "osm_id": 146999458,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1296429667,
+        "name": "Eastshore Highway",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1382195600,
+        "name": "Gilman Street",
+        "highway": "secondary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 37.8782289,
+    "lon": -122.306681
+  },
+  "D05-SLO-46-61": {
+    "found": true,
+    "osm_way_id": 1460211680,
+    "icd_m": 25.1,
+    "n_ring_nodes": 9,
+    "approach_ways": [
+      {
+        "osm_id": 1173012452,
+        "name": "",
+        "highway": "trunk_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1320066976,
+        "name": "",
+        "highway": "trunk_link",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1320066979,
+        "name": "Soscol Ferry Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1460211683,
+        "name": "Soscol Ferry Road",
+        "highway": "secondary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 38.241241,
+    "lon": -122.269847
+  },
+  "D06-FRE-145-63": {
+    "found": true,
+    "osm_way_id": 1188024504,
+    "icd_m": 37.0,
+    "n_ring_nodes": 15,
+    "approach_ways": [
+      {
+        "osm_id": 8591892,
+        "name": "Napa-Vallejo Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1188024510,
+        "name": "Napa-Vallejo Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1246266957,
+        "name": "",
+        "highway": "trunk_link",
+        "lanes": null
+      },
+      {
+        "osm_id": 1320066978,
+        "name": "Napa-Vallejo Highway",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 38.242006,
+    "lon": -122.268916
+  },
+  "D06-FRE-168-64": {
+    "found": true,
+    "osm_way_id": 535226865,
+    "icd_m": 30.6,
+    "n_ring_nodes": 22,
+    "approach_ways": [
+      {
+        "osm_id": 7697858,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": null
+      },
+      {
+        "osm_id": 26220724,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": null
+      },
+      {
+        "osm_id": 300710382,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": null
+      },
+      {
+        "osm_id": 941721853,
+        "name": "1st Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 941721854,
+        "name": "1st Street",
+        "highway": "secondary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 941721855,
+        "name": "1st Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1042634384,
+        "name": "1st Street",
+        "highway": "secondary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 38.298819,
+    "lon": -122.30116
+  },
+  "D06-KER-43-65": {
+    "found": true,
+    "osm_way_id": 1124427780,
+    "icd_m": 23.6,
+    "n_ring_nodes": 9,
+    "approach_ways": [
+      {
+        "osm_id": 1205143029,
+        "name": "Hecker Pass Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1205143030,
+        "name": "Hecker Pass Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1465441290,
+        "name": "Autumn Drive",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1465441291,
+        "name": "Autumn Drive",
+        "highway": "residential",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 37.011891,
+    "lon": -121.617909
+  },
+  "D06-KER-155-66": {
+    "found": true,
+    "osm_way_id": 905500656,
+    "icd_m": 37.5,
+    "n_ring_nodes": 23,
+    "approach_ways": [
+      {
+        "osm_id": 442675194,
+        "name": "CA 113",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 442937535,
+        "name": "CA 12",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 442937552,
+        "name": "CA 12",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 442937562,
+        "name": "CA 12",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 442937565,
+        "name": "CA 12",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 905500654,
+        "name": "Birds Landing Road",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 905500655,
+        "name": "Birds Landing Road",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 905500657,
+        "name": "CA 113",
+        "highway": "primary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 38.183669,
+    "lon": -121.806113
+  },
+  "D06-KER-184-68": {
+    "found": true,
+    "osm_way_id": 626830213,
+    "icd_m": 2.1,
+    "n_ring_nodes": 2,
+    "approach_ways": [
+      {
+        "osm_id": 626830220,
+        "name": "17 Mile Drive",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 809872200,
+        "name": "Pacific Grove-Carmel Highway",
+        "highway": "primary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 36.574504,
+    "lon": -121.912963
+  },
+  "D06-KER-58-69": {
+    "found": true,
+    "osm_way_id": 661818054,
+    "icd_m": 14.0,
+    "n_ring_nodes": 10,
+    "approach_ways": [
+      {
+        "osm_id": 626830220,
+        "name": "17 Mile Drive",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 698891379,
+        "name": "17 Mile Drive",
+        "highway": "secondary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 36.57529,
+    "lon": -121.912838
+  },
+  "D06-KIN-43-70": {
+    "found": false,
+    "osm_way_id": null,
+    "icd_m": null,
+    "n_ring_nodes": 0,
+    "approach_ways": [],
+    "warning": "no roundabout way found",
+    "lat": 34.667717,
+    "lon": -120.115007
+  },
+  "D06-KIN-198-71": {
+    "found": true,
+    "osm_way_id": 761128361,
+    "icd_m": 17.6,
+    "n_ring_nodes": 5,
+    "approach_ways": [
+      {
+        "osm_id": 761128364,
+        "name": "CA 246",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 761128365,
+        "name": "CA 246",
+        "highway": "primary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 34.664593,
+    "lon": -120.40791
+  },
+  "D06-KIN-43-72": {
+    "found": true,
+    "osm_way_id": 26766677,
+    "icd_m": 44.8,
+    "n_ring_nodes": 26,
+    "approach_ways": [
+      {
+        "osm_id": 26766551,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": 1
+      },
+      {
+        "osm_id": 26766684,
+        "name": "South Milpas Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 26766686,
+        "name": "South Milpas Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 26766700,
+        "name": "South Milpas Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 26766703,
+        "name": "South Milpas Street",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 26766718,
+        "name": "Carpinteria Street",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 635440798,
+        "name": "Carpinteria Street",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1494496952,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 34.420733,
+    "lon": -119.67766
+  },
+  "D06-TUL-190-73": {
+    "found": true,
+    "osm_way_id": 1445296348,
+    "icd_m": 17.5,
+    "n_ring_nodes": 9,
+    "approach_ways": [],
+    "warning": null,
+    "lat": 36.895652,
+    "lon": -121.427342
+  },
+  "D06-TUL-190-74": {
+    "found": true,
+    "osm_way_id": 1131520005,
+    "icd_m": 29.1,
+    "n_ring_nodes": 7,
+    "approach_ways": [
+      {
+        "osm_id": 1179650522,
+        "name": "Bixby Road",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1329618119,
+        "name": "CA 156",
+        "highway": "trunk",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1329618123,
+        "name": "CA 156",
+        "highway": "trunk",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 36.840941,
+    "lon": -121.4905
+  },
+  "D06-TUL-198-75": {
+    "found": true,
+    "osm_way_id": 1116424042,
+    "icd_m": 41.3,
+    "n_ring_nodes": 23,
+    "approach_ways": [
+      {
+        "osm_id": 1116424044,
+        "name": "Riverside Road",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1116424045,
+        "name": "",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1116424046,
+        "name": "Riverside Road",
+        "highway": "trunk",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1116424048,
+        "name": "",
+        "highway": "tertiary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1116424049,
+        "name": "Riverside Road",
+        "highway": "trunk",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1116424053,
+        "name": "Riverside Road",
+        "highway": "trunk",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 36.916834,
+    "lon": -121.73147
+  },
+  "D06-TUL-216-76": {
+    "found": true,
+    "osm_way_id": 980747798,
+    "icd_m": 19.0,
+    "n_ring_nodes": 6,
+    "approach_ways": [
+      {
+        "osm_id": 980747797,
+        "name": "Green Valley Road",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1166056294,
+        "name": "Vineyard Drive",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1166056295,
+        "name": "Vineyard Drive",
+        "highway": "tertiary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 35.553346,
+    "lon": -120.761546
+  },
+  "D07-LA-138-77": {
+    "found": true,
+    "osm_way_id": 1227690374,
+    "icd_m": 40.3,
+    "n_ring_nodes": 29,
+    "approach_ways": [
+      {
+        "osm_id": 1227690375,
+        "name": "South Madera Avenue",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1227690376,
+        "name": "West Jensen Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1227690377,
+        "name": "South Madera Avenue",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1227690378,
+        "name": "South Madera Avenue",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1227690379,
+        "name": "West Jensen Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1227690380,
+        "name": "West Jensen Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1227690383,
+        "name": "West Jensen Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1227690384,
+        "name": "South Madera Avenue",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 36.705803,
+    "lon": -120.060525
+  },
+  "D07-LA-5-78": {
+    "found": true,
+    "osm_way_id": 988373777,
+    "icd_m": 30.1,
+    "n_ring_nodes": 13,
+    "approach_ways": [
+      {
+        "osm_id": 988373768,
+        "name": "CA 168",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 988373770,
+        "name": "",
+        "highway": "service",
+        "lanes": null
+      },
+      {
+        "osm_id": 988373771,
+        "name": "",
+        "highway": "service",
+        "lanes": null
+      },
+      {
+        "osm_id": 988373772,
+        "name": "Auberry Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 988373773,
+        "name": "Auberry Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 988373775,
+        "name": "Auberry Road",
+        "highway": "primary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 37.037259,
+    "lon": -119.514254
+  },
+  "D07-LA-5-79": {
+    "found": true,
+    "osm_way_id": 914769360,
+    "icd_m": 52.5,
+    "n_ring_nodes": 24,
+    "approach_ways": [
+      {
+        "osm_id": 1125763049,
+        "name": "Taft Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1125763053,
+        "name": "Enos Lane",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1125763054,
+        "name": "Taft Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1125763055,
+        "name": "Taft Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1125763056,
+        "name": "Enos Lane",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1125763057,
+        "name": "Enos Lane",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1125763059,
+        "name": "Enos Lane",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1434332247,
+        "name": "Taft Highway",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 35.26736,
+    "lon": -119.25267
+  },
+  "D08-RIV-10-80": {
+    "found": true,
+    "osm_way_id": 1149954480,
+    "icd_m": 40.3,
+    "n_ring_nodes": 26,
+    "approach_ways": [
+      {
+        "osm_id": 1020162462,
+        "name": "Garces Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1020162463,
+        "name": "Garces Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1020162464,
+        "name": "Garces Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1020162465,
+        "name": "Garces Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1020162466,
+        "name": "Browning Road",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1020162468,
+        "name": "Browning Road",
+        "highway": "residential",
+        "lanes": null
+      },
+      {
+        "osm_id": 1149954478,
+        "name": "Browning Road",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 1149954479,
+        "name": "Browning Road",
+        "highway": "residential",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 35.761456,
+    "lon": -119.223214
+  },
+  "D08-RIV-10-81": {
+    "found": true,
+    "osm_way_id": 1196920431,
+    "icd_m": 6.7,
+    "n_ring_nodes": 3,
+    "approach_ways": [
+      {
+        "osm_id": 1196920418,
+        "name": "Weedpatch Highway",
+        "highway": "primary",
+        "lanes": 2
+      },
+      {
+        "osm_id": 1196920422,
+        "name": "Bear Mountain Boulevard",
+        "highway": "primary",
+        "lanes": 2
+      }
+    ],
+    "warning": null,
+    "lat": 35.208701,
+    "lon": -118.914508
+  },
+  "D08-SBD-215-82": {
+    "found": true,
+    "osm_way_id": 1301601698,
+    "icd_m": 44.2,
+    "n_ring_nodes": 23,
+    "approach_ways": [
+      {
+        "osm_id": 1301601699,
+        "name": "Sunset Boulevard",
+        "highway": "residential",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601700,
+        "name": "Sunset Boulevard",
+        "highway": "residential",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601701,
+        "name": "Weedpatch Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601702,
+        "name": "Weedpatch Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601703,
+        "name": "Weedpatch Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601704,
+        "name": "Weedpatch Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601705,
+        "name": "Sunset Boulevard",
+        "highway": "residential",
+        "lanes": 1
+      },
+      {
+        "osm_id": 1301601706,
+        "name": "Sunset Boulevard",
+        "highway": "residential",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 35.223296,
+    "lon": -118.914484
+  },
+  "D10-AMA-49-83": {
+    "found": true,
+    "osm_way_id": 984972780,
+    "icd_m": 5.5,
+    "n_ring_nodes": 3,
+    "approach_ways": [
+      {
+        "osm_id": 614148129,
+        "name": "Enos Lane",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 984972812,
+        "name": "Stockdale Highway",
+        "highway": "trunk",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 35.35452,
+    "lon": -119.25223
+  },
+  "D10-SJ-88-85": {
+    "found": true,
+    "osm_way_id": 1042546724,
+    "icd_m": 21.2,
+    "n_ring_nodes": 9,
+    "approach_ways": [
+      {
+        "osm_id": 10394169,
+        "name": "Central Valley Highway",
+        "highway": "primary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 893061663,
+        "name": "Whitley Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 893061667,
+        "name": "Whitley Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 893061668,
+        "name": "Central Valley Highway",
+        "highway": "primary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 36.098045,
+    "lon": -119.545835
+  },
+  "D11-SD-76-86": {
+    "found": true,
+    "osm_way_id": 936283132,
+    "icd_m": 54.7,
+    "n_ring_nodes": 33,
+    "approach_ways": [
+      {
+        "osm_id": 10392746,
+        "name": "Hanford Armona Road",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 118625890,
+        "name": "",
+        "highway": "motorway_link",
+        "lanes": null
+      },
+      {
+        "osm_id": 936283126,
+        "name": "Hanford Armona Road",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 936283128,
+        "name": "Hanford Armona Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 936283129,
+        "name": "Hanford Armona Road",
+        "highway": "secondary",
+        "lanes": null
+      },
+      {
+        "osm_id": 936283130,
+        "name": "13th Avenue",
+        "highway": "tertiary",
+        "lanes": null
+      },
+      {
+        "osm_id": 936283131,
+        "name": "13th Avenue",
+        "highway": "secondary",
+        "lanes": 1
+      }
+    ],
+    "warning": null,
+    "lat": 36.314401,
+    "lon": -119.693545
+  },
+  "D12-ORA-5-87": {
+    "found": true,
+    "osm_way_id": 700557771,
+    "icd_m": 41.3,
+    "n_ring_nodes": 23,
+    "approach_ways": [
+      {
+        "osm_id": 700557773,
+        "name": "Lacey Boulevard",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 700557774,
+        "name": "",
+        "highway": "secondary",
+        "lanes": 1
+      },
+      {
+        "osm_id": 700557776,
+        "name": "Central Valley Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 700557777,
+        "name": "Central Valley Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 700557779,
+        "name": "Central Valley Highway",
+        "highway": "primary",
+        "lanes": null
+      },
+      {
+        "osm_id": 943257466,
+        "name": "Central Valley Highway",
+        "highway": "primary",
+        "lanes": null
+      }
+    ],
+    "warning": null,
+    "lat": 36.329101,
+    "lon": -119.600979
+  }
+}

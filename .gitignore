@@ -9,11 +9,13 @@ venv/
 # SIDRA project files (generated, large)
 sites/
 *.sipx
+!templates/*.sipx
 _work_*.sipx
 
 # Generated / cached data
 cache/
-osm/
+osm/*
+!osm/parsed.json
 output/
 
 # AADT data (user-provided, not committed)

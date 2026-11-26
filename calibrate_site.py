@@ -50,8 +50,8 @@ import matplotlib.pyplot as plt
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-ROOT     = Path(__file__).parent.parent
-TEMPLATE = ROOT / "template_hcm6.sipx"
+ROOT     = Path(__file__).parent
+TEMPLATE = ROOT / "templates" / "us_roundabout_template.sipx"
 OUT_BASE = Path(__file__).parent / "output" / "calibration"
 
 # ---------------------------------------------------------------------------
@@ -128,16 +128,9 @@ def _set_calibration_param(sid, site, model_code: int, value: float):
 
 
 def _set_geometry(sid, site, icd_m: float, circ_lanes: int):
-    for leg_idx in range(8):
-        leg = sid._get_leg(site, leg_idx)
-        if leg is None:
-            continue
-        rleg = leg.Leg_roundabout
-        try:
-            rleg.Island_diameter       = float(icd_m)
-            rleg.Num_circulating_lanes = int(circ_lanes)
-        except Exception:
-            pass
+    """Inscribed diameter in metres; converted to the template's feet
+    and to central island diameter (ICD - 2 x circulating width)."""
+    sid.set_inscribed_diameter(site, float(icd_m), int(circ_lanes))
 
 
 def _set_volumes(sid, site, lv: int, hv: int):
@@ -368,6 +361,8 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     work = out_dir / f"_work_{site_id}.sipx"
+    if not TEMPLATE.exists():
+        sys.exit(f"Template not found: {TEMPLATE}. Restore templates/ from the repository.")
     shutil.copy2(str(TEMPLATE), str(work))
 
     # --- Console summary ---
